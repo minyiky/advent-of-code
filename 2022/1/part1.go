@@ -28,5 +28,5 @@ func Part1() {
 		elfTotal += val
 	}
 
-	log.Println(elfMax)
+	log.Printf("The elf carrying the most food had %d calories", elfMax)
 }
