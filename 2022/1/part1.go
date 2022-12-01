@@ -7,8 +7,6 @@ import (
 )
 
 func Part1() {
-	lines := readInput()
-
 	var elfTotal, elfMax int
 
 	for _, line := range lines {

@@ -22,8 +22,6 @@ func (t TopThree) Less(i, j int) bool {
 }
 
 func Part2() {
-	lines := readInput()
-
 	elfMaxes := make(TopThree, 0, len(lines))
 	var elfTotal int
 
