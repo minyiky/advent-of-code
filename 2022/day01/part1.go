@@ -1,12 +1,11 @@
-package dayone
+package day01
 
 import (
 	"log"
-	"os"
 	"strconv"
 )
 
-func Part1() {
+func Part1(lines []string) error {
 	var elfTotal, elfMax int
 
 	for _, line := range lines {
@@ -20,11 +19,11 @@ func Part1() {
 
 		val, err := strconv.Atoi(line)
 		if err != nil {
-			log.Fatal(err)
-			os.Exit(1)
+			return err
 		}
 		elfTotal += val
 	}
 
 	log.Printf("The elf carrying the most food had %d calories", elfMax)
+	return nil
 }
