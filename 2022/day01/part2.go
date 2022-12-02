@@ -6,7 +6,7 @@ import (
 	"strconv"
 )
 
-func Part2(lines []string) error {
+func Part2Val(lines []string) (int, error) {
 	elfMaxes := make(sort.IntSlice, 0, len(lines))
 	var elfTotal int
 
@@ -19,9 +19,12 @@ func Part2(lines []string) error {
 
 		val, err := strconv.Atoi(line)
 		if err != nil {
-			return err
+			return 0, err
 		}
 		elfTotal += val
+	}
+	if elfTotal != 0 {
+		elfMaxes = append(elfMaxes, elfTotal)
 	}
 
 	sort.Sort(elfMaxes)
@@ -29,6 +32,15 @@ func Part2(lines []string) error {
 	sum := 0
 	for _, val := range elfMaxes[len(elfMaxes)-3:] {
 		sum += val
+	}
+
+	return sum, nil
+}
+
+func Part2(lines []string) error {
+	sum, err := Part2Val(lines)
+	if err != nil {
+		return err
 	}
 	log.Printf("The top three elves carried a total of %d calories\n", sum)
 	return nil

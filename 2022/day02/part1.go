@@ -18,7 +18,7 @@ func calculatePoints(plays []string) int {
 	return points
 }
 
-func Part1(lines []string) error {
+func Part1Val(lines []string) (int, error) {
 	var score int
 
 	for _, line := range lines {
@@ -26,6 +26,14 @@ func Part1(lines []string) error {
 		score += calculatePoints(plays)
 	}
 
+	return score, nil
+}
+
+func Part1(lines []string) error {
+	score, err := Part1Val(lines)
+	if err != nil {
+		return err
+	}
 	log.Printf("Following the guide the elf gave you, you would score a total of %d points", score)
 	return nil
 }
