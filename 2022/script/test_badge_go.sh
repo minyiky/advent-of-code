@@ -1,6 +1,6 @@
 #!/bin/sh
 
-find ./day* -type d -exec touch {}/input.txt \;
+find ./day* -maxdepth 0 -type d -exec touch {}/input.txt \;
 
 num_pass=$(go test -v ./... | grep -c PASS:)
 num_tests=$(grep -r --exclude-dir=script "func Test" . | wc -l)
