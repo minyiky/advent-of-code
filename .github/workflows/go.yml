@@ -23,7 +23,7 @@ jobs:
 
     - name: Test
       working-directory: "2022"
-      run: ./script/test-badge-go.sh
+      run: ./script/test_badge_go.sh
 
     - uses: stefanzweifel/git-auto-commit-action@v4     # Step that pushes these local changes back to your github repo
       with:
