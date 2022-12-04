@@ -31,10 +31,10 @@ func main() {
 
 	fd := fieldData{Day: day}
 
-	if err := os.Mkdir(dayStr, 7); err != nil && !os.IsExist(err) {
+	if err := os.Mkdir(dayStr, 0777); err != nil && !os.IsExist(err) {
 		log.Fatal(err)
 	}
-	if err := os.Mkdir(fmt.Sprintf("%s/cmd", dayStr), 7); err != nil && !os.IsExist(err) {
+	if err := os.Mkdir(fmt.Sprintf("%s/cmd", dayStr), 0777); err != nil && !os.IsExist(err) {
 		log.Fatal(err)
 	}
 
