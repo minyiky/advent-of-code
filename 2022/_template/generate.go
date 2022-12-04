@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/fs"
 	"log"
 	"os"
 	"text/template"
@@ -32,10 +31,10 @@ func main() {
 
 	fd := fieldData{Day: day}
 
-	if err := os.Mkdir(dayStr, fs.ModeDir); err != nil && !os.IsExist(err) {
+	if err := os.Mkdir(dayStr, 7); err != nil && !os.IsExist(err) {
 		log.Fatal(err)
 	}
-	if err := os.Mkdir(fmt.Sprintf("%s/cmd", dayStr), fs.ModeDir); err != nil && !os.IsExist(err) {
+	if err := os.Mkdir(fmt.Sprintf("%s/cmd", dayStr), 7); err != nil && !os.IsExist(err) {
 		log.Fatal(err)
 	}
 
