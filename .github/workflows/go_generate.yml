@@ -4,8 +4,9 @@
 name: Template Generation
 
 on:
-  schedule:                                      # run workflow based on schedule
+  schedule:
     - cron: '0 01 1-25 12 *'
+  workflow_dispatch:
 
 jobs:
 
