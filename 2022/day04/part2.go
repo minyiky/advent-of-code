@@ -1,34 +1,22 @@
 package day04
 
 import (
-	"errors"
+	"fmt"
 	"log"
-	"strings"
 )
 
 func Part2Val(lines []string) (int, error) {
 	var value int
 
 	for _, line := range lines {
-		elfs := strings.Split(line, ",")
-		if len(elfs) != 2 {
-			return 0, errors.New("wrong number of sections found")
-		}
+		var elf1S, elf2S, elf1E, elf2E int
 
-		elf1, err := getRange(elfs[0])
-		if len(elfs) != 2 {
+		if _, err := fmt.Sscanf(line, "%d-%d,%d-%d", &elf1S, &elf1E, &elf2S, &elf2E); err != nil {
 			return 0, err
 		}
 
-		elf2, err := getRange(elfs[1])
-		if len(elfs) != 2 {
-			return 0, err
-		}
-
-		if (elf1[0] >= elf2[0] && elf1[0] <= elf2[1]) ||
-			(elf2[0] >= elf1[0] && elf2[0] <= elf1[1]) {
+		if !(elf1S > elf2E || elf2S > elf1E) {
 			value += 1
-			continue
 		}
 
 	}
