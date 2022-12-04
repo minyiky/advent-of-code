@@ -11,3 +11,4 @@
 | Day 1: Calorie Counting        |  ⭐⭐  | [go](day01/) | Adding lists of numbers to find the highest |
 | Day 2: Rock, Paper, Scissors   |  ⭐⭐  | [go](day02/) | Using maps to compare strings for the game  |
 | Day 3: Rucksack Reorganization |  ⭐⭐  | [go](day03/) | Finding matching characters (runes in go)   |
+| Day 3: Camp Cleanup            |  ⭐⭐  | [go](day04/) | Comparing ranges to find overlap            |

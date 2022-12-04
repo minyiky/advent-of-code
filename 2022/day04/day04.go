@@ -2,13 +2,34 @@ package day04
 
 import (
 	_ "embed"
+	"errors"
 	"log"
 	"os"
+	"strconv"
 	"strings"
 )
 
 //go:embed input.txt
 var input string
+
+func getRange(task string) ([]int, error) {
+	ends := strings.Split(task, "-")
+	if len(ends) != 2 {
+		return nil, errors.New("wrong number of sections found")
+	}
+
+	endVals := make([]int, 2)
+	for i, end := range ends {
+		val, err := strconv.Atoi(end)
+		if err != nil {
+			return nil, err
+		}
+
+		endVals[i] = val
+	}
+
+	return endVals, nil
+}
 
 func Run() {
 	input = strings.ReplaceAll(input, "\r", "")
