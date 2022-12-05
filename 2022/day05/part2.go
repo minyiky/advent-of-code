@@ -1,14 +1,27 @@
 package day05
 
 import (
+	"fmt"
 	"log"
 )
 
 func Part2Val(lines []string) (string, error) {
-	stacks, lines := findStacks(lines)
+	stacks, lines, err := findStacks(lines)
+	if err != nil {
+		return "", err
+	}
+
 	for _, line := range lines {
 		var item []string
-		number, start, end := parseInstructions(line)
+		number, start, end, err := parseInstructions(line)
+		if err != nil {
+			return "", err
+		}
+
+		if number > len(stacks[start]) {
+			return "", fmt.Errorf("trying to move %d crates in a stack of size %d", number, len(stacks[start]))
+		}
+
 		stacks[start], item = stacks[start][:len(stacks[start])-number], stacks[start][len(stacks[start])-number:]
 		stacks[end] = append(stacks[end], item...)
 	}

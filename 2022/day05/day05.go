@@ -2,39 +2,60 @@ package day05
 
 import (
 	_ "embed"
+	"errors"
 	"fmt"
 	"log"
 	"os"
 	"strings"
+
+	"github.com/minyiky/advent-of-code/2022/aocutils"
 )
 
 //go:embed input.txt
 var input string
 
-func findStacks(lines []string) ([][]string, []string) {
+func findStacks(lines []string) ([][]string, []string, error) {
+	if (len(lines[0])+1)%4 != 0 {
+		return nil, nil, errors.New("Incorrect fomat for stacks")
+	}
+
 	var numStacks int = (len(lines[0]) + 1) / 4
 	stacks := make([][]string, numStacks)
 	for i, line := range lines {
+		// This indicates that we are at the Stack number row
 		if string(line[1]) == "1" {
+			// if the instructions dont exist then send back an empty list for lines
+			if len(lines) < 1+2 {
+				return stacks, []string{}, nil
+			}
+
+			// Reset the lines slice to only include instructions and break the loop
 			lines = lines[i+2:]
 			break
 		}
 
 		for j := 0; j < numStacks; j++ {
+			// If the character is not a space insert a
 			if char := string(line[4*j+1]); char != " " {
-				stacks[j] = append([]string{char}, stacks[j]...)
+				stacks[j] = append(stacks[j], char)
 			}
 		}
 	}
 
-	return stacks, lines
+	// Reverse the stacks so the first items are at the top
+	for _, stack := range stacks {
+		aocutils.ReverseSlice(stack)
+	}
+
+	return stacks, lines, nil
 }
 
-func parseInstructions(line string) (int, int, int) {
+func parseInstructions(line string) (int, int, int, error) {
 	var number, start, end int
-	fmt.Sscanf(line, "move %d from %d to %d", &number, &start, &end)
-	return number, start - 1, end - 1
-
+	if _, err := fmt.Sscanf(line, "move %d from %d to %d", &number, &start, &end); err != nil {
+		return 0, 0, 0, err
+	}
+	return number, start - 1, end - 1, nil
 }
 
 func topItems(stacks [][]string) string {
