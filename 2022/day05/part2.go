@@ -4,13 +4,15 @@ import (
 	"log"
 )
 
-func Part2Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
+func Part2Val(lines []string) (string, error) {
+	stacks, lines := findStacks(lines)
+	for _, line := range lines {
+		var item []string
+		number, start, end := parseInstructions(line)
+		stacks[start], item = stacks[start][:len(stacks[start])-number], stacks[start][len(stacks[start])-number:]
+		stacks[end] = append(stacks[end], item...)
 	}
-
-	return value, nil
+	return topItems(stacks), nil
 }
 
 func Part2(lines []string) error {
@@ -18,6 +20,6 @@ func Part2(lines []string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("The value found was: %d", value)
+	log.Printf("Now that the correct version of the crane is know, the items on the top of the stacks will be: %s", value)
 	return nil
 }
