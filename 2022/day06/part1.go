@@ -4,20 +4,15 @@ import (
 	"log"
 )
 
-func Part1Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
-	}
-
-	return value, nil
+func Part1Val(line string) (int, error) {
+	return findSequence(line, 4)
 }
 
-func Part1(lines []string) error {
-	value, err := Part1Val(lines)
+func Part1(line string) error {
+	value, err := Part1Val(line)
 	if err != nil {
 		return err
 	}
-	log.Printf("The value found was: %d", value)
+	log.Printf("A marker sequence of 4 characters was found after receiving %d characters", value)
 	return nil
 }

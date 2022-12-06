@@ -5,3 +5,13 @@ func ReverseSlice[T any](slice []T) {
 		slice[i], slice[j] = slice[j], slice[i]
 	}
 }
+
+func SliceContains[T comparable](slice []T, item T) (int, bool) {
+	for i, val := range slice {
+		if val == item {
+			return i, true
+		}
+	}
+
+	return 0, false
+}

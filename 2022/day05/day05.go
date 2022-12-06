@@ -16,7 +16,7 @@ var input string
 
 func findStacks(lines []string) ([][]string, []string, error) {
 	if (len(lines[0])+1)%4 != 0 {
-		return nil, nil, errors.New("Incorrect fomat for stacks")
+		return nil, nil, errors.New("incorrect fomat for stacks")
 	}
 
 	var numStacks int = (len(lines[0]) + 1) / 4
