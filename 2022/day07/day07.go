@@ -22,6 +22,11 @@ func ChangeDir(dir, cmd string) string {
 			dir = dir[:index]
 			continue
 		}
+		if dir == "/" {
+			dir += subDir
+			continue
+		}
+
 		dir += "/" + subDir
 	}
 

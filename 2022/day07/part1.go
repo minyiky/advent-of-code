@@ -23,6 +23,6 @@ func Part1(lines []string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("The total soze of directories under 100000 was %d", value)
+	log.Printf("The total size of directories under 100000 was %d", value)
 	return nil
 }
