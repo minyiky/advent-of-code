@@ -4,11 +4,6 @@ import (
 	"log"
 )
 
-type FileInfo struct {
-	dir  string
-	size int
-}
-
 func Part1Val(lines []string) (int, error) {
 	var value int
 
