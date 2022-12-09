@@ -18,3 +18,4 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 6: Tuning Trouble          |  ⭐⭐  | [go](day06/) | Sliding windows and contains checks                     |
 | Day 7: No Space Left On Device |  ⭐⭐  | [go](day07/) | Reading input commands for string manipulation          |
 | Day 8: Treetop Tree House      |  ⭐⭐  | [go](day08/) | Searching through a 2d slice to find height values      |
+| Day 9: Rope Bridge             |  ⭐⭐  | [go](day09/) | Vector comparisons to check for movement                |

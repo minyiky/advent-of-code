@@ -5,11 +5,7 @@ import (
 )
 
 func Part1Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
-	}
-
+	value := simulateKnots(lines, 2)
 	return value, nil
 }
 
@@ -18,6 +14,6 @@ func Part1(lines []string) error {
 	if err != nil {
 		return err
 	}
-	log.Printf("The value found was: %d", value)
+	log.Printf("The knotted tail of the rope covered %d of the squares in the gird", value)
 	return nil
 }
