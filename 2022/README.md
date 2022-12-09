@@ -25,7 +25,7 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 
 To run the go code, you must be in this directory before running any of the following commands. You will also need to create `input.txt` files by running;
 ```
-find ./day* -type d -exec touch {}/input.txt \;
+find ./day* -maxdepth 0 -type d -exec touch {}/example.txt \;
 ```
 
 Any particular day can be executed by running:
