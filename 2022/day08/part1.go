@@ -4,11 +4,13 @@ import (
 	"log"
 )
 
-func Part1Val(lines []string) (int, error) {
+func Part1Val(lines []string) int {
 	var value int
 
+	// initialise the first axis of the array
 	grid := make([][]rune, len(lines))
 
+	// Add all characters to the 2d Grid (slow due to lots of appends)
 	for i, line := range lines {
 		for _, char := range line {
 			grid[i] = append(grid[i], char)
@@ -25,37 +27,40 @@ func Part1Val(lines []string) (int, error) {
 		width := len(grid[i])
 		for j := 0; j < len(grid[i]); j++ {
 			if grid[i][j] > top[i] {
-				seen[[2]int{i, j}] = true
+				if _, ok := seen[[2]int{i, j}]; !ok {
+					value++
+					seen[[2]int{i, j}] = true
+				}
 				top[i] = grid[i][j]
 			}
 			if grid[i][width-j-1] > bottom[i] {
-				seen[[2]int{i, width - j - 1}] = true
+				if _, ok := seen[[2]int{i, width - j - 1}]; !ok {
+					value++
+					seen[[2]int{i, width - j - 1}] = true
+				}
 				bottom[i] = grid[i][width-j-1]
 			}
 			if grid[i][j] > left[j] {
-				seen[[2]int{i, j}] = true
+				if _, ok := seen[[2]int{i, j}]; !ok {
+					value++
+					seen[[2]int{i, j}] = true
+				}
 				left[j] = grid[i][j]
 			}
 			if grid[height-i-1][j] > right[j] {
-				seen[[2]int{height - i - 1, j}] = true
+				if _, ok := seen[[2]int{height - i - 1, j}]; !ok {
+					value++
+					seen[[2]int{height - i - 1, j}] = true
+				}
 				right[j] = grid[height-i-1][j]
 			}
 		}
 	}
 
-	for k, _ := range seen {
-		_ = k
-		value++
-	}
-
-	return value, nil
+	return value
 }
 
-func Part1(lines []string) error {
-	value, err := Part1Val(lines)
-	if err != nil {
-		return err
-	}
+func Part1(lines []string) {
+	value := Part1Val(lines)
 	log.Printf("From outside the new patch of trees, %d trees could be seen", value)
-	return nil
 }

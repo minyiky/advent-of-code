@@ -22,9 +22,8 @@ func Test_Part1(t *testing.T) {
 	lines := SetUp()
 	expected := 95437
 
-	val, err := day.Part1Val(lines)
+	val := day.Part1Val(lines)
 
-	assert.NoError(t, err)
 	assert.Equal(t, expected, val)
 }
 

@@ -8,6 +8,8 @@ import (
 	"github.com/minyiky/advent-of-code/2022/day05"
 	"github.com/minyiky/advent-of-code/2022/day06"
 	"github.com/minyiky/advent-of-code/2022/day07"
+	"github.com/minyiky/advent-of-code/2022/day08"
+	"github.com/minyiky/advent-of-code/2022/day09"
 )
 
 func main() {
@@ -18,4 +20,6 @@ func main() {
 	day05.Run()
 	day06.Run()
 	day07.Run()
+	day08.Run()
+	day09.Run()
 }

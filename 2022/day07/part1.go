@@ -4,7 +4,7 @@ import (
 	"log"
 )
 
-func Part1Val(lines []string) (int, error) {
+func Part1Val(lines []string) int {
 	var value int
 
 	dirs := ReadDirs(lines)
@@ -15,14 +15,10 @@ func Part1Val(lines []string) (int, error) {
 		}
 	}
 
-	return value, nil
+	return value
 }
 
-func Part1(lines []string) error {
-	value, err := Part1Val(lines)
-	if err != nil {
-		return err
-	}
+func Part1(lines []string) {
+	value := Part1Val(lines)
 	log.Printf("The total size of directories under 100000 was %d", value)
-	return nil
 }

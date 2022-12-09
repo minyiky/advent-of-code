@@ -50,7 +50,7 @@ func (v *Vector) follow(leader Vector) {
 	}
 }
 
-func simulateKnots(lines []string, num int) int {
+func simulateKnots(lines []string, num int) (int, error) {
 	var value int
 
 	knots := make([]Vector, num)
@@ -58,10 +58,16 @@ func simulateKnots(lines []string, num int) int {
 
 	dirRune, count := ' ', 0
 	for _, line := range lines {
-		fmt.Sscanf(line, "%c %d", &dirRune, &count)
+		if _, err := fmt.Sscanf(line, "%c %d", &dirRune, &count); err != nil {
+			return 0, err
+		}
+
 		dir := dirMap[dirRune]
 		for i := 0; i < count; i++ {
+			// Move the head knot
 			knots[0].move(dir)
+
+			// Make all of the other knots follow
 			for k := 1; k < num; k++ {
 				knots[k].follow(knots[k-1])
 			}
@@ -71,7 +77,8 @@ func simulateKnots(lines []string, num int) int {
 			}
 		}
 	}
-	return value
+
+	return value, nil
 }
 
 func Run() {

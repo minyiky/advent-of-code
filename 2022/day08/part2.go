@@ -2,6 +2,7 @@ package day08
 
 import (
 	"log"
+	"math"
 )
 
 func getNext(height rune, view []rune) int {
@@ -18,15 +19,13 @@ func getNext(height rune, view []rune) int {
 	return num
 }
 
-func Part2Val(lines []string) (int, error) {
-	var value int
+func Part2Val(lines []string) int {
+	var value = math.MinInt
 
 	grid := make([][]rune, len(lines))
-	view := make([][]int, len(lines))
 	for i, line := range lines {
 		for _, char := range line {
 			grid[i] = append(grid[i], char-48)
-			view[i] = append(view[i], 0)
 		}
 	}
 
@@ -54,26 +53,17 @@ func Part2Val(lines []string) (int, error) {
 			}
 			left := getNext(height, leftSlice)
 
-			view[i][j] = up * down * right * left
-		}
-	}
-
-	for i := 1; i < len(grid)-1; i++ {
-		for j := 1; j < len(grid[i])-1; j++ {
-			if view[i][j] > value {
-				value = view[i][j]
+			view := up * down * right * left
+			if view > value {
+				value = view
 			}
 		}
 	}
 
-	return value, nil
+	return value
 }
 
-func Part2(lines []string) error {
-	value, err := Part2Val(lines)
-	if err != nil {
-		return err
-	}
+func Part2(lines []string) {
+	value := Part2Val(lines)
 	log.Printf("The elves found that the best view had a total score of  %d", value)
-	return nil
 }

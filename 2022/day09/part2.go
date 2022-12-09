@@ -5,8 +5,7 @@ import (
 )
 
 func Part2Val(lines []string) (int, error) {
-	value := simulateKnots(lines, 10)
-	return value, nil
+	return simulateKnots(lines, 10)
 }
 
 func Part2(lines []string) error {

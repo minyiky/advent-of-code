@@ -22,8 +22,7 @@ func Part2Val(lines []string) (int, string) {
 	return minToDel, dir
 }
 
-func Part2(lines []string) error {
+func Part2(lines []string) {
 	value, dir := Part2Val(lines)
 	log.Printf("To free up enough space you should delete %s which has a total size of %d", dir, value)
-	return nil
 }
