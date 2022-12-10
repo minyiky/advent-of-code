@@ -1,24 +1,46 @@
 package day10
 
 import (
+	"fmt"
 	"log"
+	"strings"
+
+	"github.com/minyiky/advent-of-code/2022/aocutils"
 )
 
-func Part2Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
-		_ = line
+func getPixel(spritePos int, cycle int) string {
+	linePos := (cycle - 1) % 40
+	if aocutils.Abs(linePos-spritePos) > 1 {
+		return " "
 	}
-
-	return value, nil
+	return "█"
 }
 
-func Part2(lines []string) error {
-	value, err := Part2Val(lines)
-	if err != nil {
-		return err
+func Part2Val(lines []string) string {
+	var cycle int
+	var rows [6]string
+	x := 1
+	for _, line := range lines {
+		cycle++
+		rows[(cycle-1)/40] += getPixel(x, cycle)
+
+		if strings.HasPrefix(line, "noop") {
+			continue
+		}
+
+		cycle++
+		rows[(cycle-1)/40] += getPixel(x, cycle)
+
+		var number int
+		fmt.Sscanf(line, "addx %d", &number)
+
+		x += number
 	}
-	log.Printf("The value found was: %d", value)
-	return nil
+
+	return strings.Join(rows[:], "\n")
+}
+
+func Part2(lines []string) {
+	value := Part2Val(lines)
+	log.Printf("Reading the display, the following message was shown:\n%s", value)
 }

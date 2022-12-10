@@ -1,9 +1,9 @@
 # 2022 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-18/18-success)
-![](https://img.shields.io/badge/day%20📅-9-blue)
-![](https://img.shields.io/badge/stars%20⭐-18-yellow)
-![](https://img.shields.io/badge/days%20completed-9-red)
+![](https://img.shields.io/badge/day%20📅-10-blue)
+![](https://img.shields.io/badge/stars%20⭐-20-yellow)
+![](https://img.shields.io/badge/days%20completed-10-red)
 
 Here are my results for the [2022 advent of code](https://adventofcode.com/2022) competition
 
@@ -19,6 +19,7 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 7: No Space Left On Device |  ⭐⭐  | [go](day07/) | Reading input commands for string manipulation          |
 | Day 8: Treetop Tree House      |  ⭐⭐  | [go](day08/) | Searching through a 2d slice to find height values      |
 | Day 9: Rope Bridge             |  ⭐⭐  | [go](day09/) | Vector comparisons to check for movement                |
+| Day 10: Cathode-Ray Tube       |  ⭐⭐  | [go](day10/) | Tracking a variable set by text commands<br>The first day where part 2 was very different to part 1 |
 
 
 ## Running the code

@@ -20,7 +20,7 @@ func SetUp() []string {
 
 func Test_Part1(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 13140
 
 	val, err := day.Part1Val(lines)
 
@@ -30,10 +30,9 @@ func Test_Part1(t *testing.T) {
 
 func Test_Part2(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := "██  ██  ██  ██  ██  ██  ██  ██  ██  ██  \n███   ███   ███   ███   ███   ███   ███ \n████    ████    ████    ████    ████    \n█████     █████     █████     █████     \n██████      ██████      ██████      ████\n███████       ███████       ███████     "
 
-	val, err := day.Part2Val(lines)
+	val := day.Part2Val(lines)
 
-	assert.NoError(t, err)
 	assert.Equal(t, expected, val)
 }

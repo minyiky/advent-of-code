@@ -21,10 +21,5 @@ func Run() {
 			os.Exit(1)
 		}
 	}
-	if err := Part2(lines); err != nil {
-		if err != nil {
-			log.Fatal(err)
-			os.Exit(1)
-		}
-	}
+	Part2(lines)
 }
