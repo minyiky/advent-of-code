@@ -2,7 +2,7 @@ package day10
 
 import (
 	"fmt"
-	"log"
+	"io"
 	"strings"
 )
 
@@ -37,11 +37,11 @@ func Part1Val(lines []string) (int, error) {
 	return value, nil
 }
 
-func Part1(lines []string) error {
+func Part1(w io.Writer, lines []string) error {
 	value, err := Part1Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("Analyisinf the register, it looks like the cpu has a total signal strength of %d", value)
+	fmt.Fprintf(w, "Analysing the register, it looks like the cpu has a total signal strength of %d\n", value)
 	return nil
 }

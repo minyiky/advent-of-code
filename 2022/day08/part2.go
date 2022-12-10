@@ -1,7 +1,8 @@
 package day08
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"math"
 )
 
@@ -63,7 +64,7 @@ func Part2Val(lines []string) int {
 	return value
 }
 
-func Part2(lines []string) {
+func Part2(w io.Writer, lines []string) {
 	value := Part2Val(lines)
-	log.Printf("The elves found that the best view had a total score of  %d", value)
+	fmt.Fprintf(w, "The elves found that the best view had a total score of  %d\n", value)
 }

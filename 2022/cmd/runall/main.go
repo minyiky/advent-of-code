@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/minyiky/advent-of-code/2022/day01"
 	"github.com/minyiky/advent-of-code/2022/day02"
 	"github.com/minyiky/advent-of-code/2022/day03"
@@ -10,16 +12,18 @@ import (
 	"github.com/minyiky/advent-of-code/2022/day07"
 	"github.com/minyiky/advent-of-code/2022/day08"
 	"github.com/minyiky/advent-of-code/2022/day09"
+	"github.com/minyiky/advent-of-code/2022/day10"
 )
 
 func main() {
-	day01.Run()
-	day02.Run()
-	day03.Run()
-	day04.Run()
-	day05.Run()
-	day06.Run()
-	day07.Run()
-	day08.Run()
-	day09.Run()
+	day01.Run(os.Stdout)
+	day02.Run(os.Stdout)
+	day03.Run(os.Stdout)
+	day04.Run(os.Stdout)
+	day05.Run(os.Stdout)
+	day06.Run(os.Stdout)
+	day07.Run(os.Stdout)
+	day08.Run(os.Stdout)
+	day09.Run(os.Stdout)
+	day10.Run(os.Stdout)
 }

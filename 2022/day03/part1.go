@@ -1,7 +1,8 @@
 package day03
 
 import (
-	"log"
+	"fmt"
+	"io"
 )
 
 func Part1Val(lines []string) (int, error) {
@@ -30,11 +31,11 @@ func Part1Val(lines []string) (int, error) {
 	return score, nil
 }
 
-func Part1(lines []string) error {
+func Part1(w io.Writer, lines []string) error {
 	score, err := Part1Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("The shared items in the packs had a total priority of %d points", score)
+	fmt.Fprintf(w, "The shared items in the packs had a total priority of %d points\n", score)
 	return nil
 }

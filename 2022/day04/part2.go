@@ -2,7 +2,7 @@ package day04
 
 import (
 	"fmt"
-	"log"
+	"io"
 )
 
 func Part2Val(lines []string) (int, error) {
@@ -23,11 +23,11 @@ func Part2Val(lines []string) (int, error) {
 	return value, nil
 }
 
-func Part2(lines []string) error {
+func Part2(w io.Writer, lines []string) error {
 	value, err := Part2Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("For %d of the pairs of elves, at least some level of overlap was found", value)
+	fmt.Fprintf(w, "For %d of the pairs of elves, at least some level of overlap was found\n", value)
 	return nil
 }

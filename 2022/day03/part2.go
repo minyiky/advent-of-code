@@ -1,7 +1,8 @@
 package day03
 
 import (
-	"log"
+	"fmt"
+	"io"
 )
 
 func getMidMatches(bag string, items map[rune]bool) map[rune]bool {
@@ -39,11 +40,11 @@ func Part2Val(lines []string) (int, error) {
 	return score, nil
 }
 
-func Part2(lines []string) error {
+func Part2(w io.Writer, lines []string) error {
 	score, err := Part2Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("The badges marking the different groups had a total priority of %d points", score)
+	fmt.Fprintf(w, "The badges marking the different groups had a total priority of %d points\n", score)
 	return nil
 }

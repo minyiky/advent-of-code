@@ -2,7 +2,7 @@ package day04
 
 import (
 	"fmt"
-	"log"
+	"io"
 )
 
 func Part1Val(lines []string) (int, error) {
@@ -26,11 +26,11 @@ func Part1Val(lines []string) (int, error) {
 	return value, nil
 }
 
-func Part1(lines []string) error {
+func Part1(w io.Writer, lines []string) error {
 	value, err := Part1Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("For %d of the pairs of elves, ones tasks were completely included in the other", value)
+	fmt.Fprintf(w, "For %d of the pairs of elves, ones tasks were completely included in the other\n", value)
 	return nil
 }

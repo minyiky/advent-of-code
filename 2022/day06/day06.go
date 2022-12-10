@@ -3,6 +3,8 @@ package day06
 import (
 	_ "embed"
 	"errors"
+	"fmt"
+	"io"
 	"log"
 	"os"
 
@@ -34,15 +36,15 @@ func findSequence(line string, n int) (int, error) {
 	return 0, errors.New("no markers found")
 }
 
-func Run() {
-	log.Println("-- Solution for 2022 day 06 --")
-	if err := Part1(input); err != nil {
+func Run(w io.Writer) {
+	fmt.Fprintf(w, "-- Solution for 2022 day 06 --\n")
+	if err := Part1(w, input); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
 		}
 	}
-	if err := Part2(input); err != nil {
+	if err := Part2(w, input); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)

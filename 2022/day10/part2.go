@@ -2,7 +2,7 @@ package day10
 
 import (
 	"fmt"
-	"log"
+	"io"
 	"strings"
 
 	"github.com/minyiky/advent-of-code/2022/aocutils"
@@ -40,7 +40,7 @@ func Part2Val(lines []string) string {
 	return strings.Join(rows[:], "\n")
 }
 
-func Part2(lines []string) {
+func Part2(w io.Writer, lines []string) {
 	value := Part2Val(lines)
-	log.Printf("Reading the display, the following message was shown:\n%s", value)
+	fmt.Fprintf(w, "Reading the display, the following message was shown:\n%s\n", value)
 }

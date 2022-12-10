@@ -2,7 +2,8 @@ package day07
 
 import (
 	_ "embed"
-	"log"
+	"fmt"
+	"io"
 	"strconv"
 	"strings"
 )
@@ -63,11 +64,11 @@ func ReadDirs(lines []string) map[string]int {
 	return dirs
 }
 
-func Run() {
+func Run(w io.Writer) {
 	input = strings.ReplaceAll(input, "\r", "")
 	lines := strings.Split(input, "\n")
 
-	log.Println("-- Solution for 2022 day 07 --")
-	Part1(lines)
-	Part2(lines)
+	fmt.Fprintf(w, "-- Solution for 2022 day 07 --\n")
+	Part1(w, lines)
+	Part2(w, lines)
 }

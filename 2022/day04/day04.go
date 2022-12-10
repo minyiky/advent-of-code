@@ -3,6 +3,8 @@ package day04
 import (
 	_ "embed"
 	"errors"
+	"fmt"
+	"io"
 	"log"
 	"os"
 	"strconv"
@@ -31,18 +33,18 @@ func getRange(task string) ([]int, error) {
 	return endVals, nil
 }
 
-func Run() {
+func Run(w io.Writer) {
 	input = strings.ReplaceAll(input, "\r", "")
 	lines := strings.Split(input, "\n")
 
-	log.Println("-- Solution for 2022 day 04 --")
-	if err := Part1(lines); err != nil {
+	fmt.Fprintf(w, "-- Solution for 2022 day 04 --\n")
+	if err := Part1(w, lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
 		}
 	}
-	if err := Part2(lines); err != nil {
+	if err := Part2(w, lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)

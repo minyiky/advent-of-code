@@ -1,7 +1,8 @@
 package day02
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"strings"
 )
 
@@ -35,11 +36,11 @@ func Part2Val(lines []string) (int, error) {
 	return score, nil
 }
 
-func Part2(lines []string) error {
+func Part2(w io.Writer, lines []string) error {
 	score, err := Part2Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("Now that you know what the strategy is meant to be, you would score a total of %d points\n", score)
+	fmt.Fprintf(w, "Now that you know what the strategy is meant to be, you would score a total of %d points\n", score)
 	return nil
 }

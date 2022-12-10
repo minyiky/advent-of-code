@@ -1,7 +1,8 @@
 package day01
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"strconv"
 )
 
@@ -27,11 +28,11 @@ func Part1Val(lines []string) (int, error) {
 	return elfMax, nil
 }
 
-func Part1(lines []string) error {
+func Part1(w io.Writer, lines []string) error {
 	elfMax, err := Part1Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("The elf carrying the most food had %d calories", elfMax)
+	fmt.Fprintf(w, "The elf carrying the most food had %d calories\n", elfMax)
 	return nil
 }

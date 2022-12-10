@@ -1,7 +1,8 @@
 package day07
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"math"
 )
 
@@ -22,7 +23,7 @@ func Part2Val(lines []string) (int, string) {
 	return minToDel, dir
 }
 
-func Part2(lines []string) {
+func Part2(w io.Writer, lines []string) {
 	value, dir := Part2Val(lines)
-	log.Printf("To free up enough space you should delete %s which has a total size of %d", dir, value)
+	fmt.Fprintf(w, "To free up enough space you should delete %s which has a total size of %d\n", dir, value)
 }

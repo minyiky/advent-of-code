@@ -1,7 +1,11 @@
 package main
 
-import "github.com/minyiky/advent-of-code/2022/day05"
+import (
+	"os"
+
+	"github.com/minyiky/advent-of-code/2022/day05"
+)
 
 func main() {
-	day05.Run()
+	day05.Run(os.Stdout)
 }

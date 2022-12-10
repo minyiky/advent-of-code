@@ -1,7 +1,8 @@
 package day02
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"strings"
 )
 
@@ -29,11 +30,11 @@ func Part1Val(lines []string) (int, error) {
 	return score, nil
 }
 
-func Part1(lines []string) error {
+func Part1(w io.Writer, lines []string) error {
 	score, err := Part1Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("Following the guide the elf gave you, you would score a total of %d points", score)
+	fmt.Fprintf(w, "Following the guide the elf gave you, you would score a total of %d points\n", score)
 	return nil
 }

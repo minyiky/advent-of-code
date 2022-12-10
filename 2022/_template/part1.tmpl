@@ -14,11 +14,11 @@ func Part1Val(lines []string) (int, error) {
 	return value, nil
 }
 
-func Part1(lines []string) error {
+func Part1(w io.Writer, lines []string) error {
 	value, err := Part1Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("The value found was: %d", value)
+	fmt.Fprintf(w, "The value found was: %d\n", value)
 	return nil
 }

@@ -36,7 +36,7 @@ go run ./dayXX/cmd/main.go
 
 To run all days you can instead run:
 ```
-go run ./runall/main.go
+go run ./cmd/runall/main.go
 ```
 
 To run the tests use:

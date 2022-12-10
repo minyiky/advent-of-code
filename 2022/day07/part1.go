@@ -1,7 +1,8 @@
 package day07
 
 import (
-	"log"
+	"fmt"
+	"io"
 )
 
 func Part1Val(lines []string) int {
@@ -18,7 +19,7 @@ func Part1Val(lines []string) int {
 	return value
 }
 
-func Part1(lines []string) {
+func Part1(w io.Writer, lines []string) {
 	value := Part1Val(lines)
-	log.Printf("The total size of directories under 100000 was %d", value)
+	fmt.Fprintf(w, "The total size of directories under 100000 was %d\n", value)
 }

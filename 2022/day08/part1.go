@@ -1,7 +1,8 @@
 package day08
 
 import (
-	"log"
+	"fmt"
+	"io"
 )
 
 func Part1Val(lines []string) int {
@@ -60,7 +61,7 @@ func Part1Val(lines []string) int {
 	return value
 }
 
-func Part1(lines []string) {
+func Part1(w io.Writer, lines []string) {
 	value := Part1Val(lines)
-	log.Printf("From outside the new patch of trees, %d trees could be seen", value)
+	fmt.Fprintf(w, "From outside the new patch of trees, %d trees could be seen\n", value)
 }

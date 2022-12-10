@@ -2,7 +2,7 @@ package day05
 
 import (
 	"fmt"
-	"log"
+	"io"
 )
 
 func Part2Val(lines []string) (string, error) {
@@ -28,11 +28,11 @@ func Part2Val(lines []string) (string, error) {
 	return topItems(stacks), nil
 }
 
-func Part2(lines []string) error {
+func Part2(w io.Writer, lines []string) error {
 	value, err := Part2Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("Now that the correct version of the crane is know, the items on the top of the stacks will be: %s", value)
+	fmt.Fprintf(w, "Now that the correct version of the crane is know, the items on the top of the stacks will be: %s\n", value)
 	return nil
 }

@@ -1,7 +1,8 @@
 package day01
 
 import (
-	"log"
+	"fmt"
+	"io"
 	"sort"
 	"strconv"
 )
@@ -37,11 +38,11 @@ func Part2Val(lines []string) (int, error) {
 	return sum, nil
 }
 
-func Part2(lines []string) error {
+func Part2(w io.Writer, lines []string) error {
 	sum, err := Part2Val(lines)
 	if err != nil {
 		return err
 	}
-	log.Printf("The top three elves carried a total of %d calories\n", sum)
+	fmt.Fprintf(w, "The top three elves carried a total of %d calories\n", sum)
 	return nil
 }
