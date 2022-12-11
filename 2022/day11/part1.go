@@ -1,17 +1,12 @@
 package day11
 
 import (
-	"log"
+	"fmt"
+	"io"
 )
 
 func Part1Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
-		_ = line
-	}
-
-	return value, nil
+	return worryCalculator(lines, 3, 20), nil
 }
 
 func Part1(w io.Writer, lines []string) error {
@@ -19,6 +14,6 @@ func Part1(w io.Writer, lines []string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "There has been a total monkey buisness of %d occuring with your items\n", value)
 	return nil
 }

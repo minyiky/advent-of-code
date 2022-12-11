@@ -20,6 +20,7 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 8: Treetop Tree House      |  ⭐⭐  | [go](day08/) | Searching through a 2d slice to find height values      |
 | Day 9: Rope Bridge             |  ⭐⭐  | [go](day09/) | Vector comparisons to check for movement                |
 | Day 10: Cathode-Ray Tube       |  ⭐⭐  | [go](day10/) | Tracking a variable set by text commands<br>The first day where part 2 was very different to part 1 |
+| Day 10: Monkey in the Middle   |  ⭐⭐  | [go](day11/) | The hardest challenge so far, parsing complex data into a struct<br>Part 2 has a hidden challenge that you have to work out, big numbers can end up small... |
 
 
 ## Running the code
