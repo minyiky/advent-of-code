@@ -16,6 +16,7 @@ import (
 	"github.com/minyiky/advent-of-code/2022/day09"
 	"github.com/minyiky/advent-of-code/2022/day10"
 	"github.com/minyiky/advent-of-code/2022/day11"
+	"github.com/minyiky/advent-of-code/2022/day12"
 )
 
 var DayMap = map[string]func(io.Writer){
@@ -30,6 +31,7 @@ var DayMap = map[string]func(io.Writer){
 	"day09": day09.Run,
 	"day10": day10.Run,
 	"day11": day11.Run,
+	"day12": day12.Run,
 }
 
 func main() {
@@ -44,6 +46,10 @@ func main() {
 }
 
 func handleMain(w http.ResponseWriter, r *http.Request) {
+	if r.URL.Path != "/" {
+		http.Error(w, "404 Not Found", http.StatusNotFound)
+		return
+	}
 	fmt.Fprintf(w, "Welcome to the main page!\n")
 }
 

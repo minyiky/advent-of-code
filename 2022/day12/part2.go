@@ -1,17 +1,48 @@
 package day12
 
 import (
-	"log"
+	"fmt"
+	"io"
+	"sort"
+
+	"github.com/minyiky/advent-of-code/2022/aocutils"
 )
 
 func Part2Val(lines []string) (int, error) {
-	var value int
+	yLen, xLen := len(lines), len(lines[1])
 
-	for _, line := range lines{
-		_ = line
+	grid := make([][]rune, yLen)
+
+	for i := range grid {
+		grid[i] = make([]rune, xLen)
 	}
 
-	return value, nil
+	var start []aocutils.Vector
+	var end aocutils.Vector
+	for y, line := range lines {
+		for x, char := range []rune(line) {
+			if char == 'S' || char == 'a' {
+				start = append(start, aocutils.NewVector(x, y))
+				grid[y][x] = 'a'
+				continue
+			}
+			if char == 'E' {
+				end = aocutils.NewVector(x, y)
+				grid[y][x] = 'z'
+				continue
+			}
+			grid[y][x] = char
+		}
+	}
+
+	emptyMap := make(map[aocutils.Vector]int)
+	var values sort.IntSlice
+	for _, s := range start {
+		value, _ := findSummit(s, end, 0, grid, emptyMap)
+		values = append(values, value)
+	}
+	sort.Sort(values)
+	return values[0], nil
 }
 
 func Part2(w io.Writer, lines []string) error {
@@ -19,6 +50,6 @@ func Part2(w io.Writer, lines []string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "Having chosen a better starting location, it now only took %d steps to reach the summit\n", value)
 	return nil
 }

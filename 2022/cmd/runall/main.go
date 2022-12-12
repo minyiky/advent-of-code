@@ -14,6 +14,7 @@ import (
 	"github.com/minyiky/advent-of-code/2022/day09"
 	"github.com/minyiky/advent-of-code/2022/day10"
 	"github.com/minyiky/advent-of-code/2022/day11"
+	"github.com/minyiky/advent-of-code/2022/day12"
 )
 
 func main() {
@@ -28,4 +29,5 @@ func main() {
 	day09.Run(os.Stdout)
 	day10.Run(os.Stdout)
 	day11.Run(os.Stdout)
+	day12.Run(os.Stdout)
 }
