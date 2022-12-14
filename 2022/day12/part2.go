@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"sort"
+	"time"
 
 	"github.com/minyiky/advent-of-code/2022/aocutils"
 )
@@ -46,10 +47,13 @@ func Part2Val(lines []string) (int, error) {
 }
 
 func Part2(w io.Writer, lines []string) error {
+	start := time.Now()
 	value, err := Part2Val(lines)
 	if err != nil {
 		return err
 	}
+	duration := time.Since(start)
 	fmt.Fprintf(w, "Having chosen a better starting location, it now only took %d steps to reach the summit\n", value)
+	fmt.Fprintf(w, "This took %.2fms\n", float64(duration)/1e6)
 	return nil
 }
