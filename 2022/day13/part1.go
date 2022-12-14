@@ -1,14 +1,22 @@
 package day13
 
 import (
-	"log"
+	"fmt"
+	"io"
 )
 
 func Part1Val(lines []string) (int, error) {
 	var value int
 
-	for _, line := range lines{
-		_ = line
+	for i := 0; i < len(lines); i += 3 {
+		left := lines[i]
+		right := lines[i+1]
+		left = StripEnds(left)
+		right = StripEnds(right)
+		valid, _ := isValid(left, right)
+		if valid {
+			value += (i / 3) + 1
+		}
 	}
 
 	return value, nil
@@ -19,6 +27,6 @@ func Part1(w io.Writer, lines []string) error {
 	if err != nil {
 		return err
 	}
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "the total vaues for thre correct pairs of the distress signal was %d\n", value)
 	return nil
 }

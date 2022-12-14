@@ -22,6 +22,8 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 10: Cathode-Ray Tube        |  ⭐⭐  | [go](day10/) | Tracking a variable set by text commands<br>The first day where part 2 was very different to part 1 |
 | Day 11: Monkey in the Middle    |  ⭐⭐  | [go](day11/) | The hardest challenge so far, parsing complex data into a struct<br>Part 2 has a hidden challenge that you have to work out, big numbers can end up small... |
 | Day 12: Hill Climbing Algorithm |  ⭐⭐  | [go](day12/) | Path finding through a set of heights<br>Used a map of distance for optimisation |
+| Day 13: Distress Signal         |  ⭐⭐  | [go](day13/) | This was a day where the language choice made a big impact<br>A lot of effort was spent parsing the input while in python it was a single line `eval(line)`<br>The focus on arsing meant that I missed that I misunderstood the assignment RTFM! |
+| Day 14: Regolith Reservoir      |  ⭐⭐  | [go](day14/) | a nice change today, nothing too bad, a classic "falling sand" problem |
 
 
 ## Running the code
