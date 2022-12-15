@@ -5,6 +5,7 @@ import (
 	"strings"
 	"testing"
 
+	"github.com/minyiky/advent-of-code/2022/aocutils"
 	day "github.com/minyiky/advent-of-code/2022/day15"
 	"github.com/stretchr/testify/assert"
 )
@@ -20,9 +21,10 @@ func SetUp() []string {
 
 func Test_Part1(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 26
+	row := 10
 
-	val, err := day.Part1Val(lines)
+	val, err := day.Part1Val(lines, row)
 
 	assert.NoError(t, err)
 	assert.Equal(t, expected, val)
@@ -30,9 +32,12 @@ func Test_Part1(t *testing.T) {
 
 func Test_Part2(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 56000011
 
-	val, err := day.Part2Val(lines)
+	bottomLeft := aocutils.NewVector(0, 0)
+	topRight := aocutils.NewVector(20, 20)
+
+	val, err := day.Part2Val(lines, bottomLeft, topRight)
 
 	assert.NoError(t, err)
 	assert.Equal(t, expected, val)

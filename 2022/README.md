@@ -1,9 +1,9 @@
 # 2022 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-28/28-success)
-![](https://img.shields.io/badge/day%20📅-14-blue)
-![](https://img.shields.io/badge/stars%20⭐-28-yellow)
-![](https://img.shields.io/badge/days%20completed-14-red)
+![](https://img.shields.io/badge/day%20📅-13-blue)
+![](https://img.shields.io/badge/stars%20⭐-25-yellow)
+![](https://img.shields.io/badge/days%20completed-12-red)
 
 Here are my results for the [2022 advent of code](https://adventofcode.com/2022) competition
 
@@ -22,8 +22,9 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 10: Cathode-Ray Tube        |  ⭐⭐  | [go](day10/) | Tracking a variable set by text commands<br>The first day where part 2 was very different to part 1 |
 | Day 11: Monkey in the Middle    |  ⭐⭐  | [go](day11/) | The hardest challenge so far, parsing complex data into a struct<br>Part 2 has a hidden challenge that you have to work out, big numbers can end up small... |
 | Day 12: Hill Climbing Algorithm |  ⭐⭐  | [go](day12/) | Path finding through a set of heights<br>Used a map of distance for optimisation |
-| Day 13: Distress Signal         |  ⭐⭐  | [go](day13/) | This was a day where the language choice made a big impact<br>A lot of effort was spent parsing the input while in python it was a single line `eval(line)`<br>The focus on arsing meant that I missed that I misunderstood the assignment RTFM! |
-| Day 14: Regolith Reservoir      |  ⭐⭐  | [go](day14/) | a nice change today, nothing too bad, a classic "falling sand" problem |
+| Day 13: Distress Signal         |  ⭐⭐  | [go](day13/) | This was a day where the language choice made a big impact<br>A lot of effort was spent parsing the input while in python it was a single line `eval(line)`<br>The focus on parsing meant that I missed that I misunderstood the assignment RTFM! |
+| Day 14: Regolith Reservoir      |  ⭐⭐  | [go](day14/) | A nice change today, nothing too bad, a classic "falling sand" problem |
+| Day 15: Beacon Exclusion Zone   |  ⭐⭐  | [go](day15/) | Today was definitely a day where thinking was required<br>The simple map based approach I used at first was too slow in part 1<br>Checking all the positions was too slow in part 2 |
 
 
 ## Running the code
