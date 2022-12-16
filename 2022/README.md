@@ -25,6 +25,7 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 13: Distress Signal         |  ⭐⭐  | [go](day13/) | This was a day where the language choice made a big impact<br>A lot of effort was spent parsing the input while in python it was a single line `eval(line)`<br>The focus on parsing meant that I missed that I misunderstood the assignment RTFM! |
 | Day 14: Regolith Reservoir      |  ⭐⭐  | [go](day14/) | A nice change today, nothing too bad, a classic "falling sand" problem |
 | Day 15: Beacon Exclusion Zone   |  ⭐⭐  | [go](day15/) | Today was definitely a day where thinking was required<br>The simple map based approach I used at first was too slow in part 1<br>Checking all the positions was too slow in part 2 |
+| Day 16: Proboscidea Volcanium   |  ⭐⭐  | [go](day16/) | Another tough day for the CPU, my initial solution was very unopimised and I stopped it after 10 minutes.<br>I eventually managed to get to <20s with a reduction of steps<br>code is messy and I need to investigate path finding algorithms |
 
 
 ## Running the code

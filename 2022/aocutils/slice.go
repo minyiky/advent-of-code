@@ -30,3 +30,9 @@ func SliceMax[T constraints.Ordered](slice []T) T {
 	}
 	return max
 }
+
+func CopySlice[T any](slice []T) []T {
+	newSlice := make([]T, len(slice))
+	copy(newSlice, slice)
+	return newSlice
+}
