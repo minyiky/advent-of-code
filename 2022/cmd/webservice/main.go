@@ -21,6 +21,8 @@ import (
 	"github.com/minyiky/advent-of-code/2022/day14"
 	"github.com/minyiky/advent-of-code/2022/day15"
 	"github.com/minyiky/advent-of-code/2022/day16"
+	"github.com/minyiky/advent-of-code/2022/day17"
+	"github.com/minyiky/advent-of-code/2022/day18"
 )
 
 var DayMap = map[string]func(io.Writer){
@@ -40,6 +42,8 @@ var DayMap = map[string]func(io.Writer){
 	"day14": day14.Run,
 	"day15": day15.Run,
 	"day16": day16.Run,
+	"day17": day17.Run,
+	"day18": day18.Run,
 }
 
 func main() {

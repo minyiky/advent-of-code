@@ -6,19 +6,13 @@ import (
 	"time"
 )
 
-func Part2Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
-		_ = line
-	}
-
-	return value, nil
+func Part2Val(line string) (int, error) {
+	return QuickHeight(1000000000000, line), nil
 }
 
-func Part2(w io.Writer, lines []string) error {
+func Part2(w io.Writer, line string) error {
 	start := time.Now()
-	value, err := Part2Val(lines)
+	value, err := Part2Val(line)
 	if err != nil {
 		return err
 	}
