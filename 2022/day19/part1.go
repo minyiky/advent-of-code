@@ -48,9 +48,6 @@ func getMaxGeode(stock, gen Reasources, maxNeeded []int, robots []Robot, time, g
 		if geode > geodes {
 			geodes = geode
 		}
-		if geode == 6 {
-			return 6
-		}
 	}
 
 	geode := getMaxGeode(stock, gen, maxNeeded, robots, time+1, tmpGeodes)

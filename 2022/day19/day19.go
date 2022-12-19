@@ -35,7 +35,7 @@ func (r Reasources) Sub(t Reasources) Reasources {
 }
 
 func (r Reasources) IsEnough(t Reasources) bool {
-	return r.ore >= t.ore && r.clay >= t.clay && r.obsidian >= t.obsidian && r.geode >= t.geode
+	return r.ore >= t.ore && r.clay >= t.clay && r.obsidian >= t.obsidian
 }
 
 type Robot struct {

@@ -20,7 +20,7 @@ func SetUp() []string {
 
 func Test_Part1(t *testing.T) {
 	lines := SetUp()
-	expected := 33
+	expected := 24
 
 	val, err := day.Part1Val(lines)
 
