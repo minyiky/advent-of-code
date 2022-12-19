@@ -29,21 +29,28 @@ func getMaxGeode(stock, gen Reasources, maxNeeded []int, robots []Robot, time, g
 
 	tmpGeodes := geodes
 
-	resList := []int{
-		0, gen.obsidian, gen.clay, gen.ore,
-	}
-	for i, robot := range robots {
+	// resList := []int{
+	// 	0, gen.obsidian, gen.clay, gen.ore,
+	// }
+	for _, robot := range robots {
 		if !stock.IsEnough(robot.cost) {
 			continue
 		}
 
-		if resList[i] >= maxNeeded[i] {
-			continue
-		}
+		// Temporarily removed to ensure not the problem
+		// if resList[i] >= maxNeeded[i] {
+		// 	continue
+		// }
 
+		// Take the reasources needed from the stockpile
 		tmpStock := stock.Sub(robot.cost)
+
+		// Simulate the day while building
 		tmpStock = tmpStock.Add(gen)
+
+		// Produce the robot by adding to the relevent generator
 		tmpGen := gen.Add(robot.produces)
+
 		geode := getMaxGeode(tmpStock, tmpGen, maxNeeded, robots, time+2, tmpGeodes)
 		if geode > geodes {
 			geodes = geode
