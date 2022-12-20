@@ -68,8 +68,6 @@ func Part2Val(lines []string) (int, error) {
 		}
 	}
 
-	fmt.Println(limits)
-
 	for point := range grid {
 		for _, direction := range directions {
 			newPoint := point.Add(direction)

@@ -26,6 +26,10 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 14: Regolith Reservoir      |  ⭐⭐  | [go](day14/) | A nice change today, nothing too bad, a classic "falling sand" problem |
 | Day 15: Beacon Exclusion Zone   |  ⭐⭐  | [go](day15/) | Today was definitely a day where thinking was required<br>The simple map based approach I used at first was too slow in part 1<br>Checking all the positions was too slow in part 2 |
 | Day 16: Proboscidea Volcanium   |  ⭐⭐  | [go](day16/) | Another tough day for the CPU, my initial solution was very unopimised and I stopped it after 10 minutes.<br>I eventually managed to get to <20s with a reduction of steps<br>code is messy and I need to investigate path finding algorithms |
+| Day 17: Pyroclastic Flow        |  ⭐⭐  | [go](day17/) | Today was about optimising how to find out if a block could move in various directions<br>While the solution does work, it does currently fail the tests<br>it relies on a repetition of a pattern in the main input to solve, I will update this to be programatic in the future. |
+| Day 18: Boiling Boulders        |  ⭐⭐  | [go](day18/) | This looked scary with the 3d coordinates but ended up being quite benign |
+| Day 19: Not Enough Minerals     |  ⭐⭐  | [go](day19/) | This was a challenging day, not for the coding but for the opimisations and finding ways that didnt prune wrong answers<br>Got stuck for a while but the rewrote to skip steps on each loop improved the speed by a factor of >600, still more that can be done |
+| Day 20: Grove Positioning System |  ⭐⭐  | [go](day20/) |Quite a simple day hen you realise the modulus trick (you have taken an element out remember)<br>I got stuck due to a hidden hard coded dependency that worked for the test but not the real answer |
 
 
 ## Running the code

@@ -7,12 +7,30 @@ import (
 )
 
 func Part2Val(lines []string) (int, error) {
-	var value int
+	value := 1
 
-	for _, line := range lines{
-		_ = line
+	values := []int{}
+
+	for i, line := range lines {
+		Robots, maxNeeded, _ := ParseLine(line)
+
+		geodes := getMaxGeode(
+			Reasources{},
+			Reasources{ore: 1},
+			Reasources{ore: 1},
+			maxNeeded,
+			Robots,
+			31, 0,
+		)
+		values = append(values, geodes)
+		if i == 2 {
+			break
+		}
 	}
 
+	for _, v := range values {
+		value *= v
+	}
 	return value, nil
 }
 
@@ -23,7 +41,7 @@ func Part2(w io.Writer, lines []string) error {
 		return err
 	}
 	duration := time.Since(start)
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "Even if the elephants did lose most of the blueprints, you now have food so the extra time allows you to have a power of %d\n", value)
 	fmt.Fprintf(w, "This took %.2fms\n", float64(duration)/1e6)
 	return nil
 }
