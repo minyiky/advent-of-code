@@ -1,9 +1,9 @@
 # 2022 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-38/40-important)
-![](https://img.shields.io/badge/day%20📅-19-blue)
-![](https://img.shields.io/badge/stars%20⭐-37-yellow)
-![](https://img.shields.io/badge/days%20completed-18-red)
+![](https://img.shields.io/badge/day%20📅-20-blue)
+![](https://img.shields.io/badge/stars%20⭐-40-yellow)
+![](https://img.shields.io/badge/days%20completed-20-red)
 
 Here are my results for the [2022 advent of code](https://adventofcode.com/2022) competition
 
