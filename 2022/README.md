@@ -29,7 +29,9 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 17: Pyroclastic Flow        |  ⭐⭐  | [go](day17/) | Today was about optimising how to find out if a block could move in various directions<br>While the solution does work, it does currently fail the tests<br>it relies on a repetition of a pattern in the main input to solve, I will update this to be programatic in the future. |
 | Day 18: Boiling Boulders        |  ⭐⭐  | [go](day18/) | This looked scary with the 3d coordinates but ended up being quite benign |
 | Day 19: Not Enough Minerals     |  ⭐⭐  | [go](day19/) | This was a challenging day, not for the coding but for the opimisations and finding ways that didnt prune wrong answers<br>Got stuck for a while but the rewrote to skip steps on each loop improved the speed by a factor of >600, still more that can be done |
-| Day 20: Grove Positioning System |  ⭐⭐  | [go](day20/) |Quite a simple day hen you realise the modulus trick (you have taken an element out remember)<br>I got stuck due to a hidden hard coded dependency that worked for the test but not the real answer |
+| Day 20: Grove Positioning System |  ⭐⭐  | [go](day20/) | Quite a simple day when you realise the modulus trick (you have taken an element out remember)<br>I got stuck due to a hidden hard coded dependency that worked for the test but not the real answer |
+| Day 20: Monkey Math             |  ⭐⭐  | [go](day21/) | A day of easy recursion and a binary search for part 2 |
+
 
 
 ## Running the code

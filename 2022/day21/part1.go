@@ -9,9 +9,14 @@ import (
 func Part1Val(lines []string) (int, error) {
 	var value int
 
-	for _, line := range lines{
-		_ = line
+	monkeys := make(map[string]*Monkey)
+
+	for _, line := range lines {
+		name, monkey := NewMonkey(line)
+		monkeys[name] = monkey
 	}
+
+	value = monkeys["root"].GetVal(monkeys)
 
 	return value, nil
 }
@@ -23,7 +28,7 @@ func Part1(w io.Writer, lines []string) error {
 		return err
 	}
 	duration := time.Since(start)
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "You realise that the monkey named 'root' is going to shout out %d\n", value)
 	fmt.Fprintf(w, "This took %.2fms\n", float64(duration)/1e6)
 	return nil
 }
