@@ -30,7 +30,11 @@ Here are my results for the [2022 advent of code](https://adventofcode.com/2022)
 | Day 18: Boiling Boulders        |  ⭐⭐  | [go](day18/) | This looked scary with the 3d coordinates but ended up being quite benign |
 | Day 19: Not Enough Minerals     |  ⭐⭐  | [go](day19/) | This was a challenging day, not for the coding but for the opimisations and finding ways that didnt prune wrong answers<br>Got stuck for a while but the rewrote to skip steps on each loop improved the speed by a factor of >600, still more that can be done |
 | Day 20: Grove Positioning System |  ⭐⭐  | [go](day20/) | Quite a simple day when you realise the modulus trick (you have taken an element out remember)<br>I got stuck due to a hidden hard coded dependency that worked for the test but not the real answer |
-| Day 20: Monkey Math             |  ⭐⭐  | [go](day21/) | A day of easy recursion and a binary search for part 2 |
+| Day 21: Monkey Math             |  ⭐⭐  | [go](day21/) | A day of easy recursion and a binary search for part 2 |
+| Day 22: Monkey Map              |  ⭐⭐  | [go](day22/) | Mostly eay coding, the problem came with mapping the real input in part 2<br>the code only works for a single cube map, so manual tranposition is require |
+| Day 23: Unstable Diffusion      |  ⭐⭐  | [go](day23/) | The "battle" puzzle of the year, there was nothing too challenging in this one just tracking positions and a rolling order of priorities. |
+| Day 24: Blizzard Basin          |  ⭐⭐  | [go](day24/) | Used a BFS rather than the DFS used in previous excersices to avoid moving back and forth<br>Had to acound for obstables moving and a possible option bein not to move |
+| Day 25: Full of Hot Air         |  ⭐⭐  | [go](day25/) | An easy first half of the piuzzle with a small trick of modular maths for the second half |
 
 
 

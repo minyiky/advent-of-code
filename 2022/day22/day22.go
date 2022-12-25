@@ -2,6 +2,7 @@ package day22
 
 import (
 	_ "embed"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -16,13 +17,13 @@ func Run(w io.Writer) {
 	lines := strings.Split(input, "\n")
 
 	fmt.Fprintf(w, "-- Solution for 2022 day 22 --\n")
-	if err := Part1(w , lines); err != nil {
+	if err := Part1(w, lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
 		}
 	}
-	if err := Part2(w , lines); err != nil {
+	if err := Part2(w, lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)

@@ -4,16 +4,31 @@ import (
 	"fmt"
 	"io"
 	"time"
+
+	"github.com/minyiky/advent-of-code/2022/aocutils"
 )
 
 func Part2Val(lines []string) (int, error) {
-	var value int
-
-	for _, line := range lines{
-		_ = line
+	moves := Moves{
+		[][]aocutils.Vector{
+			{{0, 1}, {-1, 1}, {1, 1}},
+			{{0, -1}, {-1, -1}, {1, -1}},
+			{{-1, 0}, {-1, -1}, {-1, 1}},
+			{{1, 0}, {1, -1}, {1, 1}},
+		},
+	}
+	elves := GetElves(lines)
+	var round int
+	for {
+		// fmt.Printf("== End of Round %d ==\n", i)
+		round++
+		if moved := MoveElves(elves, moves); !moved {
+			break
+		}
+		moves.NextCycle()
 	}
 
-	return value, nil
+	return round, nil
 }
 
 func Part2(w io.Writer, lines []string) error {
@@ -23,7 +38,7 @@ func Part2(w io.Writer, lines []string) error {
 		return err
 	}
 	duration := time.Since(start)
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "It will take %d minutes to reach the final position\n", value)
 	fmt.Fprintf(w, "This took %.2fms\n", float64(duration)/1e6)
 	return nil
 }
