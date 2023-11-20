@@ -10,13 +10,13 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 //go:embed input.txt
 var input string
 
-func findSummit(position, end aocutils.Vector, steps int, grid [][]rune, vistited map[aocutils.Vector]int) (int, bool) {
+func findSummit(position, end point.Point2D, steps int, grid [][]rune, vistited map[point.Point2D]int) (int, bool) {
 	if position == end {
 		return steps, true
 	}
@@ -25,42 +25,42 @@ func findSummit(position, end aocutils.Vector, steps int, grid [][]rune, vistite
 
 	steps++
 
-	char := grid[position.Y][position.X]
+	char := grid[position.Y()][position.X()]
 	up, down, right, left := math.MaxInt, math.MaxInt, math.MaxInt, math.MaxInt
 	var upOk, downOk, rightOk, leftOk, ok, seen bool
 	var last int
 
 	// Look Up
-	last, seen = vistited[aocutils.NewVector(position.X, position.Y-1)]
+	last, seen = vistited[point.NewPoint2D(position.X(), position.Y()-1)]
 	ok = (!seen || last > steps)
-	if position.Y != 0 &&
-		checkHeight(char, grid[position.Y-1][position.X]) &&
+	if position.Y() != 0 &&
+		checkHeight(char, grid[position.Y()-1][position.X()]) &&
 		ok {
-		up, upOk = findSummit(aocutils.NewVector(position.X, position.Y-1), end, steps, grid, vistited)
+		up, upOk = findSummit(point.NewPoint2D(position.X(), position.Y()-1), end, steps, grid, vistited)
 	}
 	// Look Down
-	last, seen = vistited[aocutils.NewVector(position.X, position.Y+1)]
+	last, seen = vistited[point.NewPoint2D(position.X(), position.Y()+1)]
 	ok = (!seen || last > steps)
-	if position.Y != len(grid)-1 &&
-		checkHeight(char, grid[position.Y+1][position.X]) &&
+	if position.Y() != len(grid)-1 &&
+		checkHeight(char, grid[position.Y()+1][position.X()]) &&
 		ok {
-		down, downOk = findSummit(aocutils.NewVector(position.X, position.Y+1), end, steps, grid, vistited)
+		down, downOk = findSummit(point.NewPoint2D(position.X(), position.Y()+1), end, steps, grid, vistited)
 	}
 	// Look Left
-	last, seen = vistited[aocutils.NewVector(position.X-1, position.Y)]
+	last, seen = vistited[point.NewPoint2D(position.X()-1, position.Y())]
 	ok = (!seen || last > steps)
-	if position.X != 0 &&
-		checkHeight(char, grid[position.Y][position.X-1]) &&
+	if position.X() != 0 &&
+		checkHeight(char, grid[position.Y()][position.X()-1]) &&
 		ok {
-		left, leftOk = findSummit(aocutils.NewVector(position.X-1, position.Y), end, steps, grid, vistited)
+		left, leftOk = findSummit(point.NewPoint2D(position.X()-1, position.Y()), end, steps, grid, vistited)
 	}
-	last, seen = vistited[aocutils.NewVector(position.X+1, position.Y)]
+	last, seen = vistited[point.NewPoint2D(position.X()+1, position.Y())]
 	ok = (!seen || last > steps)
 	// Look Right
-	if position.X != len(grid[0])-1 &&
-		checkHeight(char, grid[position.Y][position.X+1]) &&
+	if position.X() != len(grid[0])-1 &&
+		checkHeight(char, grid[position.Y()][position.X()+1]) &&
 		ok {
-		right, rightOk = findSummit(aocutils.NewVector(position.X+1, position.Y), end, steps, grid, vistited)
+		right, rightOk = findSummit(point.NewPoint2D(position.X()+1, position.Y()), end, steps, grid, vistited)
 	}
 
 	if !upOk && !downOk && !leftOk && !rightOk {

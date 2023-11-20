@@ -5,12 +5,12 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
-func FindExit2(start, end aocutils.Vector, blizzards []Blizzard, boundry map[aocutils.Vector]bool) int {
+func FindExit2(start, end point.Point2D, blizzards []Blizzard, boundry map[point.Point2D]bool) int {
 	var moves int
-	moveMap := map[aocutils.Vector]bool{start: true}
+	moveMap := map[point.Point2D]bool{start: true}
 
 	for {
 		moves++
@@ -24,7 +24,7 @@ func FindExit2(start, end aocutils.Vector, blizzards []Blizzard, boundry map[aoc
 		moveMap = newMoves
 	}
 
-	moveMap = map[aocutils.Vector]bool{end: true}
+	moveMap = map[point.Point2D]bool{end: true}
 
 	for {
 		moves++
@@ -38,7 +38,7 @@ func FindExit2(start, end aocutils.Vector, blizzards []Blizzard, boundry map[aoc
 		moveMap = newMoves
 	}
 
-	moveMap = map[aocutils.Vector]bool{start: true}
+	moveMap = map[point.Point2D]bool{start: true}
 
 	for {
 		moves++
@@ -60,23 +60,23 @@ func Part2Val(lines []string) (int, error) {
 	height := len(lines)
 	blizzardFactory := BlizzardFactory{width: width, height: height}
 
-	boundry := map[aocutils.Vector]bool{{1, 1}: true}
+	boundry := map[point.Point2D]bool{point.NewPoint2D(1, 1): true}
 	blizzards := []Blizzard{}
 
 	for y, line := range lines {
 		for x, char := range line {
 			switch char {
 			case '>', '<', '^', 'v':
-				blizzards = append(blizzards, blizzardFactory.New(aocutils.NewVector(x, -y), char))
+				blizzards = append(blizzards, blizzardFactory.New(point.NewPoint2D(x, -y), char))
 			case '#':
-				boundry[aocutils.NewVector(x, -y)] = true
+				boundry[point.NewPoint2D(x, -y)] = true
 			}
 		}
 	}
 
 	return FindExit2(
-		aocutils.NewVector(1, 0),
-		aocutils.NewVector(width-2, 1-height),
+		point.NewPoint2D(1, 0),
+		point.NewPoint2D(width-2, 1-height),
 		blizzards,
 		boundry,
 	), nil

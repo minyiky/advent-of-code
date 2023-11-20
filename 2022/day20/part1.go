@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 func insert[T any](a []T, index int, value T) []T {
@@ -41,7 +41,7 @@ func Part1Val(lines []string) (int, error) {
 		}
 	}
 
-	newList := aocutils.CopySlice(list)
+	newList := container.CopySlice(list)
 
 	for _, num := range list {
 		start := keys[num]

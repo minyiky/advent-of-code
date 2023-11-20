@@ -8,77 +8,78 @@ import (
 	"os"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/maths"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 //go:embed input.txt
 var input string
 
 type Sensor struct {
-	pos  aocutils.Vector
+	pos  point.Point2D
 	dist int
 }
 
 func newSensor(x, y, dist int) *Sensor {
 	return &Sensor{
-		pos:  aocutils.NewVector(x, y),
+		pos:  point.NewPoint2D(x, y),
 		dist: dist,
 	}
 }
 
-func (s *Sensor) InBounds(pos aocutils.Vector) bool {
+func (s *Sensor) InBounds(pos point.Point2D) bool {
 	if pos == s.pos {
 		return false
 	}
-	return s.pos.MDist(pos) <= s.dist
+	return point.ManhattanDistance(s.pos, pos) <= s.dist
 }
 
-func (s *Sensor) IgnoreNext(pos aocutils.Vector) int {
-	yMax := s.dist - aocutils.Abs(pos.X-s.pos.X)
-	return yMax + (s.pos.Y - pos.Y)
+func (s *Sensor) IgnoreNext(pos point.Point2D) int {
+	yMax := s.dist - maths.Abs(pos.X()-s.pos.X())
+	return yMax + (s.pos.Y() - pos.Y())
 }
 
-func mapBeacon(sensor, beacon aocutils.Vector, beacons, sensors map[aocutils.Vector]bool, topLeft, bottomRight *aocutils.Vector) *Sensor {
-	dist := sensor.MDist(beacon)
-	if sensor.X+dist > bottomRight.X {
-		bottomRight.X = sensor.X + dist
+func mapBeacon(sensor, beacon point.Point2D, beacons, sensors map[point.Point2D]bool, topLeft, bottomRight *point.Point2D) *Sensor {
+	dist := point.ManhattanDistance(sensor, beacon)
+	if sensor.X()+dist > bottomRight.X() {
+		bottomRight.SetX(sensor.X() + dist)
 	}
-	if sensor.X-dist < topLeft.X {
-		topLeft.X = sensor.X - dist
+	if sensor.X()-dist < topLeft.X() {
+		topLeft.SetX(sensor.X() - dist)
 	}
-	if sensor.Y+dist > topLeft.Y {
-		topLeft.Y = sensor.Y + dist
+	if sensor.Y()+dist > topLeft.Y() {
+		topLeft.SetY(sensor.Y() + dist)
 	}
-	if sensor.Y-dist > bottomRight.Y {
-		bottomRight.Y = sensor.Y - dist
+	if sensor.Y()-dist > bottomRight.Y() {
+		bottomRight.SetY(sensor.Y() - dist)
 	}
 	beacons[beacon] = true
 	sensors[sensor] = true
-	return newSensor(sensor.X, sensor.Y, dist)
+	return newSensor(sensor.X(), sensor.Y(), dist)
 }
 
-func mapBeaconNaive(sensor, beacon aocutils.Vector, coverage map[aocutils.Vector]bool, topLeft, bottomRight *aocutils.Vector) {
-	dist := sensor.MDist(beacon)
-	if sensor.X+dist > bottomRight.X {
-		bottomRight.X = sensor.X + dist
+func mapBeaconNaive(sensor, beacon point.Point2D, coverage map[point.Point2D]bool, topLeft, bottomRight *point.Point2D) {
+	dist := point.ManhattanDistance(sensor, beacon)
+	if sensor.X()+dist > bottomRight.X() {
+		bottomRight.SetX(sensor.X() + dist)
 	}
-	if sensor.X-dist < topLeft.X {
-		topLeft.X = sensor.X - dist
+	if sensor.X()-dist < topLeft.X() {
+		topLeft.SetX(sensor.X() - dist)
 	}
-	if sensor.Y+dist > topLeft.Y {
-		topLeft.Y = sensor.Y + dist
+	if sensor.Y()+dist > topLeft.Y() {
+		topLeft.SetY(sensor.Y() + dist)
 	}
-	if sensor.Y-dist > bottomRight.Y {
-		bottomRight.Y = sensor.Y - dist
+	if sensor.Y()-dist > bottomRight.Y() {
+		bottomRight.SetY(sensor.Y() - dist)
 	}
 	for xLim := 0; xLim <= dist; xLim++ {
 		y := dist - xLim
 		for x := 0; x <= xLim; x++ {
-			for _, pos := range []aocutils.Vector{
-				aocutils.NewVector(sensor.X+x, sensor.Y+y),
-				aocutils.NewVector(sensor.X-x, sensor.Y+y),
-				aocutils.NewVector(sensor.X+x, sensor.Y-y),
-				aocutils.NewVector(sensor.X-x, sensor.Y-y),
+			for _, pos := range []point.Point2D{
+				point.NewPoint2D(sensor.X()+x, sensor.Y()+y),
+				point.NewPoint2D(sensor.X()-x, sensor.Y()+y),
+				point.NewPoint2D(sensor.X()+x, sensor.Y()-y),
+				point.NewPoint2D(sensor.X()-x, sensor.Y()-y),
 			} {
 				if pos != beacon {
 					coverage[pos] = true
@@ -100,9 +101,9 @@ func Run(w io.Writer) {
 		}
 	}
 
-	bottomLeft := aocutils.NewVector(0, 0)
-	topRight := aocutils.NewVector(4000000, 4000000)
-	if err := Part2(w, lines, bottomLeft, topRight); err != nil {
+	bottomLeft := point.NewPoint2D(0, 0)
+	topRight := point.NewPoint2D(4000000, 4000000)
+	if err := Part2(w, lines, &bottomLeft, &topRight); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)

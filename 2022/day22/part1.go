@@ -6,28 +6,29 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 type Instruction struct {
-	direction aocutils.Vector
+	direction point.Point2D
 	distance  int
 }
 
-func GetFirst(line string) aocutils.Vector {
-	var first aocutils.Vector
+func GetFirst(line string) point.Point2D {
+	var first point.Point2D
 	for j, char := range []rune(line) {
 		if char == '.' {
-			first = aocutils.NewVector(j+1, 1)
+			first = point.NewPoint2D(j+1, 1)
 			break
 		}
 	}
 	return first
 }
 
-func ExtractGrid(lines []string) (map[aocutils.Vector]bool, map[aocutils.Vector]bool) {
-	grid := make(map[aocutils.Vector]bool)
-	blocks := make(map[aocutils.Vector]bool)
+func ExtractGrid(lines []string) (map[point.Point2D]bool, map[point.Point2D]bool) {
+	grid := make(map[point.Point2D]bool)
+	blocks := make(map[point.Point2D]bool)
 
 	for i, line := range lines {
 		if line == "" {
@@ -36,10 +37,10 @@ func ExtractGrid(lines []string) (map[aocutils.Vector]bool, map[aocutils.Vector]
 		for j, char := range []rune(line) {
 			switch char {
 			case '#':
-				blocks[aocutils.NewVector(j+1, i+1)] = true
+				blocks[point.NewPoint2D(j+1, i+1)] = true
 				fallthrough
 			case '.':
-				grid[aocutils.NewVector(j+1, i+1)] = true
+				grid[point.NewPoint2D(j+1, i+1)] = true
 			}
 		}
 	}
@@ -48,11 +49,11 @@ func ExtractGrid(lines []string) (map[aocutils.Vector]bool, map[aocutils.Vector]
 }
 
 func ExtractInsructions(line string) ([]Instruction, error) {
-	dirList := []aocutils.Vector{
-		aocutils.NewVector(0, 1),  // U
-		aocutils.NewVector(1, 0),  // R
-		aocutils.NewVector(0, -1), // D
-		aocutils.NewVector(-1, 0), // L
+	dirList := []point.Point2D{
+		point.NewPoint2D(0, 1),  // U
+		point.NewPoint2D(1, 0),  // R
+		point.NewPoint2D(0, -1), // D
+		point.NewPoint2D(-1, 0), // L
 	}
 
 	line += "X"
@@ -105,11 +106,11 @@ func Part1Val(lines []string) (int, error) {
 
 	for _, instruction := range instructions {
 		for i := 0; i < instruction.distance; i++ {
-			next := current.Add(instruction.direction)
+			next := point.Add(current, instruction.direction)
 			if _, ok := grid[next]; !ok {
-				rev := aocutils.NewVector(instruction.direction.X*-1, instruction.direction.Y*-1)
+				rev := point.NewPoint2D(instruction.direction.X()*-1, instruction.direction.Y()*-1)
 				for {
-					tmpNext := next.Add(rev)
+					tmpNext := point.Add(next, rev)
 					if _, ok := grid[tmpNext]; !ok {
 						break
 					}
@@ -124,20 +125,20 @@ func Part1Val(lines []string) (int, error) {
 		}
 	}
 
-	dirList := []aocutils.Vector{
-		aocutils.NewVector(1, 0),  // R
-		aocutils.NewVector(0, 1),  // U
-		aocutils.NewVector(-1, 0), // L
-		aocutils.NewVector(0, -1), // D
+	dirList := []point.Point2D{
+		point.NewPoint2D(1, 0),  // R
+		point.NewPoint2D(0, 1),  // U
+		point.NewPoint2D(-1, 0), // L
+		point.NewPoint2D(0, -1), // D
 	}
 
-	x, _ := aocutils.SliceContains(dirList, instructions[len(instructions)-1].direction)
+	x, _ := container.SliceContains(dirList, instructions[len(instructions)-1].direction)
 
-	fmt.Println("Row: ", current.Y)
-	fmt.Println("Col: ", current.X)
+	fmt.Println("Row: ", current.Y())
+	fmt.Println("Col: ", current.X())
 	fmt.Println("Dir: ", x)
 
-	return 1000*current.Y + 4*current.X + x, nil
+	return 1000*current.Y() + 4*current.X() + x, nil
 }
 
 func Part1(w io.Writer, lines []string) error {

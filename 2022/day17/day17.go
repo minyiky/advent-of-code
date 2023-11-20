@@ -8,7 +8,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 //go:embed input.txt
@@ -16,7 +17,7 @@ var input string
 
 type Shape struct {
 	name      string
-	points    []aocutils.Vector
+	points    []point.Point2D
 	highPoint int
 }
 
@@ -28,7 +29,7 @@ type ShapeList struct {
 func (s *ShapeList) Next() Shape {
 	shape := Shape{
 		name:      s.Shapes[s.index].name,
-		points:    aocutils.CopySlice(s.Shapes[s.index].points),
+		points:    container.CopySlice(s.Shapes[s.index].points),
 		highPoint: s.Shapes[s.index].highPoint,
 	}
 	s.index += 1
@@ -41,52 +42,52 @@ func (s *ShapeList) Next() Shape {
 var (
 	Flat = Shape{
 		name: "flat",
-		points: []aocutils.Vector{
-			{X: 0, Y: 0},
-			{X: 1, Y: 0},
-			{X: 2, Y: 0},
-			{X: 3, Y: 0},
+		points: []point.Point2D{
+			point.NewPoint2D(0, 0),
+			point.NewPoint2D(1, 0),
+			point.NewPoint2D(2, 0),
+			point.NewPoint2D(3, 0),
 		},
 		highPoint: 0,
 	}
 	Cross = Shape{
 		name: "cross",
-		points: []aocutils.Vector{
-			{X: 1, Y: 0},
-			{X: 0, Y: 1},
-			{X: 2, Y: 1},
-			{X: 1, Y: 2},
+		points: []point.Point2D{
+			point.NewPoint2D(1, 0),
+			point.NewPoint2D(0, 1),
+			point.NewPoint2D(2, 1),
+			point.NewPoint2D(1, 2),
 		},
 		highPoint: 3,
 	}
 	Tall = Shape{
 		name: "tall",
-		points: []aocutils.Vector{
-			{X: 0, Y: 0},
-			{X: 0, Y: 1},
-			{X: 0, Y: 2},
-			{X: 0, Y: 3},
+		points: []point.Point2D{
+			point.NewPoint2D(0, 0),
+			point.NewPoint2D(0, 1),
+			point.NewPoint2D(0, 2),
+			point.NewPoint2D(0, 3),
 		},
 		highPoint: 3,
 	}
 	L = Shape{
 		name: "l",
-		points: []aocutils.Vector{
-			{X: 0, Y: 0},
-			{X: 1, Y: 0},
-			{X: 2, Y: 0},
-			{X: 2, Y: 1},
-			{X: 2, Y: 2},
+		points: []point.Point2D{
+			point.NewPoint2D(0, 0),
+			point.NewPoint2D(1, 0),
+			point.NewPoint2D(2, 0),
+			point.NewPoint2D(2, 1),
+			point.NewPoint2D(2, 2),
 		},
 		highPoint: 4,
 	}
 	Box = Shape{
 		name: "box",
-		points: []aocutils.Vector{
-			{X: 0, Y: 0},
-			{X: 1, Y: 0},
-			{X: 0, Y: 1},
-			{X: 1, Y: 1},
+		points: []point.Point2D{
+			point.NewPoint2D(0, 0),
+			point.NewPoint2D(1, 0),
+			point.NewPoint2D(0, 1),
+			point.NewPoint2D(1, 1),
 		},
 		highPoint: 3,
 	}
@@ -94,11 +95,11 @@ var (
 
 func QuickHeight(num int, line string) int {
 	if num <= 1741 {
-		grid := make(map[aocutils.Vector]bool)
+		grid := make(map[point.Point2D]bool)
 		for i := 0; i < 7; i++ {
-			grid[aocutils.Vector{i, -1}] = true
+			grid[point.NewPoint2D(i, -1)] = true
 		}
-		return HeightAfterFall(num, line, grid, aocutils.Vector{}, 0, 0)
+		return HeightAfterFall(num, line, grid, point.NewPoint2D(0, 0), 0, 0)
 	}
 
 	initHeight := 2701
@@ -113,24 +114,24 @@ func QuickHeight(num int, line string) int {
 		height += regHeight
 	}
 
-	grid := make(map[aocutils.Vector]bool)
-	grid[aocutils.Vector{0, height - 3}] = true
-	grid[aocutils.Vector{1, height - 2}] = true
-	grid[aocutils.Vector{2, height - 1}] = true
-	grid[aocutils.Vector{3, height - 1}] = true
-	grid[aocutils.Vector{4, height - 1}] = true
-	grid[aocutils.Vector{4, height - 2}] = true
-	grid[aocutils.Vector{4, height - 3}] = true
-	grid[aocutils.Vector{4, height - 4}] = true
-	grid[aocutils.Vector{4, height - 5}] = true
-	grid[aocutils.Vector{5, height - 1}] = true
-	grid[aocutils.Vector{5, height - 6}] = true
+	grid := make(map[point.Point2D]bool)
+	grid[point.NewPoint2D(0, height-3)] = true
+	grid[point.NewPoint2D(1, height-2)] = true
+	grid[point.NewPoint2D(2, height-1)] = true
+	grid[point.NewPoint2D(3, height-1)] = true
+	grid[point.NewPoint2D(4, height-1)] = true
+	grid[point.NewPoint2D(4, height-2)] = true
+	grid[point.NewPoint2D(4, height-3)] = true
+	grid[point.NewPoint2D(4, height-4)] = true
+	grid[point.NewPoint2D(4, height-5)] = true
+	grid[point.NewPoint2D(5, height-1)] = true
+	grid[point.NewPoint2D(5, height-6)] = true
 
-	return HeightAfterFall(num-numFallen, line, grid, aocutils.NewVector(-1, 0), height, 1)
+	return HeightAfterFall(num-numFallen, line, grid, point.NewPoint2D(-1, 0), height, 1)
 
 }
 
-func HeightAfterFall(num int, line string, grid map[aocutils.Vector]bool, initialPush aocutils.Vector, startHeight, startIndex int) int {
+func HeightAfterFall(num int, line string, grid map[point.Point2D]bool, initialPush point.Point2D, startHeight, startIndex int) int {
 	value := startHeight
 	shapes := ShapeList{
 		[]Shape{Flat, Cross, L, Tall, Box},
@@ -150,23 +151,23 @@ func HeightAfterFall(num int, line string, grid map[aocutils.Vector]bool, initia
 		shape := shapes.Next()
 		if i == 0 {
 			for j, pos := range shape.points {
-				shape.points[j] = pos.Add(initialPush)
+				shape.points[j] = point.Add(pos, initialPush)
 			}
 		}
 		for j, pos := range shape.points {
-			shape.points[j] = pos.Add(aocutils.NewVector(2, height))
+			shape.points[j] = point.Add(pos, point.NewPoint2D(2, height))
 		}
 		for {
 			charIndex += 1
 			charIndex %= lineLen
 			char := line[charIndex]
-			push := aocutils.NewVector(1, 0)
+			push := point.NewPoint2D(1, 0)
 			if char == '<' {
-				push = aocutils.NewVector(-1, 0)
+				push = point.NewPoint2D(-1, 0)
 			}
 			if !blockedSide(shape, push, grid) {
 				for j, pos := range shape.points {
-					shape.points[j] = pos.Add(push)
+					shape.points[j] = point.Add(pos, push)
 				}
 			}
 
@@ -174,7 +175,7 @@ func HeightAfterFall(num int, line string, grid map[aocutils.Vector]bool, initia
 				for _, pos := range shape.points {
 					grid[pos] = true
 				}
-				blockHeight := shape.points[shape.highPoint].Y + 1
+				blockHeight := shape.points[shape.highPoint].Y() + 1
 				if blockHeight > value {
 					value = blockHeight
 				}
@@ -185,7 +186,7 @@ func HeightAfterFall(num int, line string, grid map[aocutils.Vector]bool, initia
 				break
 			}
 			for j, pos := range shape.points {
-				shape.points[j] = pos.Add(aocutils.NewVector(0, -1))
+				shape.points[j] = point.Add(pos, point.NewPoint2D(0, -1))
 			}
 			height -= 1
 		}

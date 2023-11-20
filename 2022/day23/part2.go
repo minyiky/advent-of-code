@@ -5,16 +5,16 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 func Part2Val(lines []string) (int, error) {
 	moves := Moves{
-		[][]aocutils.Vector{
-			{{0, 1}, {-1, 1}, {1, 1}},
-			{{0, -1}, {-1, -1}, {1, -1}},
-			{{-1, 0}, {-1, -1}, {-1, 1}},
-			{{1, 0}, {1, -1}, {1, 1}},
+		[][]point.Point2D{
+			{point.NewPoint2D(0, 1), point.NewPoint2D(-1, 1), point.NewPoint2D(1, 1)},
+			{point.NewPoint2D(0, -1), point.NewPoint2D(-1, -1), point.NewPoint2D(1, -1)},
+			{point.NewPoint2D(-1, 0), point.NewPoint2D(-1, -1), point.NewPoint2D(-1, 1)},
+			{point.NewPoint2D(1, 0), point.NewPoint2D(1, -1), point.NewPoint2D(1, 1)},
 		},
 	}
 	elves := GetElves(lines)

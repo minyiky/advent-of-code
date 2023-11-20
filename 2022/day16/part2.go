@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 type Route struct {
@@ -38,9 +38,9 @@ func getBestRoute2(currentValve Valve, viableValves map[string]Valve, paths map[
 	}
 
 	for key, dest := range viableValves {
-		mapCopy := aocutils.CopyMap(viableValves)
+		mapCopy := container.CopyMap(viableValves)
 		delete(mapCopy, key)
-		pathCopy := aocutils.CopySlice(path)
+		pathCopy := container.CopySlice(path)
 		pathCopy = append(pathCopy, key)
 		pathLen := paths[currentValve.name][key]
 		routeSlice = getBestRoute2(dest, mapCopy, paths, pathCopy, time+pathLen, startPressure, routeSlice)
@@ -104,14 +104,14 @@ func Part2Val(lines []string) (int, error) {
 	routes = getBestRoute2(valves["AA"], valvesViable, paths, []string{}, 0, 0, routes)
 
 	sort.Sort(routes)
-	aocutils.ReverseSlice(routes)
+	container.ReverseSlice(routes)
 	highestP := 0
 
 	for i, route := range routes[:routes.Len()-2] {
 	elephant:
 		for _, elephant := range routes[i+1:] {
 			for _, valve := range route.valves {
-				if _, ok := aocutils.SliceContains(elephant.valves, valve); ok {
+				if _, ok := container.SliceContains(elephant.valves, valve); ok {
 					continue elephant
 				}
 			}

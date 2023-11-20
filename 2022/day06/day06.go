@@ -8,7 +8,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 //go:embed input.txt
@@ -18,7 +18,7 @@ func findSequence(line string, n int) (int, error) {
 	marker := make([]rune, 0, n-1)
 
 	for i, char := range line {
-		index, contains := aocutils.SliceContains(marker, char)
+		index, contains := container.SliceContains(marker, char)
 
 		if contains {
 			marker = append(marker[index+1:], char)

@@ -5,13 +5,13 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
-func blockedSide(shape Shape, move aocutils.Vector, grid map[aocutils.Vector]bool) bool {
+func blockedSide(shape Shape, move point.Point2D, grid map[point.Point2D]bool) bool {
 	for _, pos := range shape.points {
-		newPos := pos.Add(move)
-		if newPos.X < 0 || newPos.X > 6 {
+		newPos := point.Add(pos, move)
+		if newPos.X() < 0 || newPos.X() > 6 {
 			return true
 		}
 
@@ -22,10 +22,10 @@ func blockedSide(shape Shape, move aocutils.Vector, grid map[aocutils.Vector]boo
 	return false
 }
 
-func blockedDown(shape Shape, grid map[aocutils.Vector]bool) bool {
-	down := aocutils.NewVector(0, -1)
+func blockedDown(shape Shape, grid map[point.Point2D]bool) bool {
+	down := point.NewPoint2D(0, -1)
 	for _, pos := range shape.points {
-		newPos := pos.Add(down)
+		newPos := point.Add(pos, down)
 		if _, exists := grid[newPos]; exists {
 			return true
 		}

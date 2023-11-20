@@ -5,22 +5,22 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 func Part1Val(lines []string) (int, error) {
 	var value int
 
-	grid := make(map[aocutils.Vector3D]bool)
+	grid := make(map[point.Point3D]bool)
 	for _, line := range lines {
 		var x, y, z int
 		fmt.Sscanf(line, "%d,%d,%d", &x, &y, &z)
-		grid[aocutils.NewVector3D(x, y, z)] = true
+		grid[point.NewPoint3D(x, y, z)] = true
 	}
 
-	for point := range grid {
+	for pos := range grid {
 		for _, direction := range directions {
-			if _, ok := grid[point.Add(direction)]; !ok {
+			if _, ok := grid[point.Add(pos, direction)]; !ok {
 				value++
 			}
 		}

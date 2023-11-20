@@ -5,27 +5,27 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
-func sandFall(start aocutils.Vector, blocked map[aocutils.Vector]bool, yLim int) bool {
+func sandFall(start point.Point2D, blocked map[point.Point2D]bool, yLim int) bool {
 	sand := start
 	for {
-		if sand.Y == yLim {
+		if sand.Y() == yLim {
 			return true
 		}
-		if _, ok := blocked[aocutils.NewVector(sand.X, sand.Y+1)]; !ok {
-			sand = aocutils.NewVector(sand.X, sand.Y+1)
+		if _, ok := blocked[point.NewPoint2D(sand.X(), sand.Y()+1)]; !ok {
+			sand = point.NewPoint2D(sand.X(), sand.Y()+1)
 			continue
 		}
 
-		if _, ok := blocked[aocutils.NewVector(sand.X-1, sand.Y+1)]; !ok {
-			sand = aocutils.NewVector(sand.X-1, sand.Y+1)
+		if _, ok := blocked[point.NewPoint2D(sand.X()-1, sand.Y()+1)]; !ok {
+			sand = point.NewPoint2D(sand.X()-1, sand.Y()+1)
 			continue
 		}
 
-		if _, ok := blocked[aocutils.NewVector(sand.X+1, sand.Y+1)]; !ok {
-			sand = aocutils.NewVector(sand.X+1, sand.Y+1)
+		if _, ok := blocked[point.NewPoint2D(sand.X()+1, sand.Y()+1)]; !ok {
+			sand = point.NewPoint2D(sand.X()+1, sand.Y()+1)
 			continue
 		}
 
@@ -44,7 +44,7 @@ func Part1Val(lines []string) (int, error) {
 		return 0, err
 	}
 
-	sandStart := aocutils.NewVector(500, 0)
+	sandStart := point.NewPoint2D(500, 0)
 	for {
 		if out := sandFall(sandStart, blocked, yLim); out {
 			break

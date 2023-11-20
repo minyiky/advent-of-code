@@ -5,23 +5,25 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 func Part1Val(lines []string, row int) (int, error) {
 	var value int
-	beaconMap := make(map[aocutils.Vector]bool)
-	sensorMap := make(map[aocutils.Vector]bool)
-	var topLeft, bottomRight aocutils.Vector
+	beaconMap := make(map[point.Point2D]bool)
+	sensorMap := make(map[point.Point2D]bool)
+	var topLeft, bottomRight point.Point2D
 	sensors := make([]*Sensor, 0, len(lines))
 	for _, line := range lines {
-		var sensor, beacon aocutils.Vector
-		fmt.Sscanf(line, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d", &sensor.X, &sensor.Y, &beacon.X, &beacon.Y)
+		var sensorX, sensorY, beaconX, beaconY int
+		fmt.Sscanf(line, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d", &sensorX, &sensorY, &beaconX, &beaconY)
+		sensor := point.NewPoint2D(sensorX, sensorY)
+		beacon := point.NewPoint2D(beaconX, beaconY)
 		sensors = append(sensors, mapBeacon(sensor, beacon, beaconMap, sensorMap, &topLeft, &bottomRight))
 	}
 
-	for x := topLeft.X; x <= bottomRight.X; x++ {
-		pos := aocutils.NewVector(x, row)
+	for x := topLeft.X(); x <= bottomRight.X(); x++ {
+		pos := point.NewPoint2D(x, row)
 		if !beaconMap[pos] && !sensorMap[pos] {
 			for _, s := range sensors {
 				if s.InBounds(pos) {

@@ -8,44 +8,44 @@ import (
 	"os"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 //go:embed input.txt
 var input string
 
-var cardinalDirs = []aocutils.Vector{
-	{1, 0},
-	{-1, 0},
-	{0, 1},
-	{0, -1},
+var cardinalDirs = []point.Point2D{
+	point.NewPoint2D(1, 0),
+	point.NewPoint2D(-1, 0),
+	point.NewPoint2D(0, 1),
+	point.NewPoint2D(0, -1),
 }
 
 type Blizzard struct {
-	Pos      aocutils.Vector
-	StartPos aocutils.Vector
-	Dir      aocutils.Vector
+	Pos      point.Point2D
+	StartPos point.Point2D
+	Dir      point.Point2D
 }
 
 type BlizzardFactory struct {
 	width, height int
 }
 
-func (bf BlizzardFactory) New(pos aocutils.Vector, dirChar rune) Blizzard {
-	var dir, startPos aocutils.Vector
+func (bf BlizzardFactory) New(pos point.Point2D, dirChar rune) Blizzard {
+	var dir, startPos point.Point2D
 	switch dirChar {
 	case '>':
-		dir = aocutils.NewVector(1, 0)
-		startPos = aocutils.NewVector(1, pos.Y)
+		dir = point.NewPoint2D(1, 0)
+		startPos = point.NewPoint2D(1, pos.Y())
 	case '^':
-		dir = aocutils.NewVector(0, 1)
-		startPos = aocutils.NewVector(pos.X, 2-bf.height)
+		dir = point.NewPoint2D(0, 1)
+		startPos = point.NewPoint2D(pos.X(), 2-bf.height)
 	case '<':
-		dir = aocutils.NewVector(-1, 0)
-		startPos = aocutils.NewVector(bf.width-2, pos.Y)
+		dir = point.NewPoint2D(-1, 0)
+		startPos = point.NewPoint2D(bf.width-2, pos.Y())
 	case 'v':
-		dir = aocutils.NewVector(0, -1)
-		startPos = aocutils.NewVector(pos.X, -1)
+		dir = point.NewPoint2D(0, -1)
+		startPos = point.NewPoint2D(pos.X(), -1)
 	}
 	return Blizzard{
 		Pos:      pos,
@@ -54,11 +54,11 @@ func (bf BlizzardFactory) New(pos aocutils.Vector, dirChar rune) Blizzard {
 	}
 }
 
-func moveBlizzards(blizzards []Blizzard, boundry map[aocutils.Vector]bool) map[aocutils.Vector]bool {
-	blizMap := make(map[aocutils.Vector]bool)
+func moveBlizzards(blizzards []Blizzard, boundry map[point.Point2D]bool) map[point.Point2D]bool {
+	blizMap := make(map[point.Point2D]bool)
 	for i := range blizzards {
 		b := blizzards[i]
-		newPos := b.Pos.Add(b.Dir)
+		newPos := point.Add(b.Pos, b.Dir)
 		if boundry[newPos] {
 			newPos = b.StartPos
 		}
@@ -68,14 +68,14 @@ func moveBlizzards(blizzards []Blizzard, boundry map[aocutils.Vector]bool) map[a
 	return blizMap
 }
 
-func makeMove(moveMap, blizMap, boundry map[aocutils.Vector]bool, end aocutils.Vector) (map[aocutils.Vector]bool, bool) {
-	newMoves := make(map[aocutils.Vector]bool)
+func makeMove(moveMap, blizMap, boundry map[point.Point2D]bool, end point.Point2D) (map[point.Point2D]bool, bool) {
+	newMoves := make(map[point.Point2D]bool)
 	for pos, _ := range moveMap {
 		if !blizMap[pos] {
 			newMoves[pos] = true
 		}
 		for _, dir := range cardinalDirs {
-			newPos := pos.Add(dir)
+			newPos := point.Add(pos, dir)
 			if newPos == end {
 				return nil, true
 			}

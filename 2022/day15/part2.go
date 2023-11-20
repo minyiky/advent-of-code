@@ -5,25 +5,25 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
-func Part2Val(lines []string, bottomLeft, topRight aocutils.Vector) (int, error) {
+func Part2Val(lines []string, bottomLeft, topRight *point.Point2D) (int, error) {
 	var value int
-	beaconMap := make(map[aocutils.Vector]bool)
-	sensorMap := make(map[aocutils.Vector]bool)
-	var topLeft, bottomRight aocutils.Vector
+	beaconMap := make(map[point.Point2D]bool)
+	sensorMap := make(map[point.Point2D]bool)
+	var topLeft, bottomRight point.Point2D
 	sensors := make([]*Sensor, 0, len(lines))
 	for _, line := range lines {
-		var sensor, beacon aocutils.Vector
-		fmt.Sscanf(line, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d", &sensor.X, &sensor.Y, &beacon.X, &beacon.Y)
+		var sensor, beacon point.Point2D
+		fmt.Sscanf(line, "Sensor at x=%d, y=%d: closest beacon is at x=%d, y=%d", sensor.X(), sensor.Y(), beacon.X(), beacon.Y())
 		sensors = append(sensors, mapBeacon(sensor, beacon, beaconMap, sensorMap, &topLeft, &bottomRight))
 	}
 
-	for x := bottomLeft.X; x <= topRight.X; x++ {
+	for x := bottomLeft.X(); x <= topRight.X(); x++ {
 	loop:
-		for y := bottomLeft.Y; y <= topRight.Y; y++ {
-			pos := aocutils.NewVector(x, y)
+		for y := bottomLeft.Y(); y <= topRight.Y(); y++ {
+			pos := point.NewPoint2D(x, y)
 			if !beaconMap[pos] && !sensorMap[pos] {
 				for _, s := range sensors {
 					if s.InBounds(pos) {
@@ -38,7 +38,7 @@ func Part2Val(lines []string, bottomLeft, topRight aocutils.Vector) (int, error)
 	return value, nil
 }
 
-func Part2(w io.Writer, lines []string, bottomLeft, topRight aocutils.Vector) error {
+func Part2(w io.Writer, lines []string, bottomLeft, topRight *point.Point2D) error {
 	start := time.Now()
 	value, err := Part2Val(lines, bottomLeft, topRight)
 	if err != nil {

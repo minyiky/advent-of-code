@@ -6,11 +6,11 @@ import (
 	"math"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
-func MapElves(elves []Elf) map[aocutils.Vector]bool {
-	grid := make(map[aocutils.Vector]bool)
+func MapElves(elves []Elf) map[point.Point2D]bool {
+	grid := make(map[point.Point2D]bool)
 	for _, elf := range elves {
 		grid[elf.Pos] = true
 	}
@@ -22,14 +22,14 @@ func MoveElves(elves []Elf, moves Moves) bool {
 
 	var moved bool
 
-	plannedMoves := make(map[aocutils.Vector]int)
+	plannedMoves := make(map[point.Point2D]int)
 
 	for i, elf := range elves {
-		posMoves := make([]aocutils.Vector, 0, 4)
+		posMoves := make([]point.Point2D, 0, 4)
 	dir:
 		for _, dir := range moves.Directions {
 			for _, subDir := range dir {
-				if grid[elf.Pos.Add(subDir)] {
+				if grid[point.Add(elf.Pos, subDir)] {
 					continue dir
 				}
 			}
@@ -40,12 +40,12 @@ func MoveElves(elves []Elf, moves Moves) bool {
 		}
 		moved = true
 		elves[i].Move = posMoves[0]
-		plannedMoves[elf.Pos.Add(posMoves[0])]++
+		plannedMoves[point.Add(elf.Pos, posMoves[0])]++
 	}
 
 	for elf := range elves {
-		if plannedMoves[elves[elf].Pos.Add(elves[elf].Move)] == 1 {
-			elves[elf].Pos = elves[elf].Pos.Add(elves[elf].Move)
+		if plannedMoves[point.Add(elves[elf].Pos, elves[elf].Move)] == 1 {
+			elves[elf].Pos = point.Add(elves[elf].Pos, elves[elf].Move)
 		}
 		elves[elf].Move = NoMove
 	}
@@ -60,17 +60,17 @@ func findBounds(elves []Elf) (int, int, int, int) {
 	yMin := math.MaxInt
 
 	for _, elf := range elves {
-		if elf.Pos.X < xMin {
-			xMin = elf.Pos.X
+		if elf.Pos.X() < xMin {
+			xMin = elf.Pos.X()
 		}
-		if elf.Pos.Y < yMin {
-			yMin = elf.Pos.Y
+		if elf.Pos.Y() < yMin {
+			yMin = elf.Pos.Y()
 		}
-		if elf.Pos.X > xMax {
-			xMax = elf.Pos.X
+		if elf.Pos.X() > xMax {
+			xMax = elf.Pos.X()
 		}
-		if elf.Pos.Y > yMax {
-			yMax = elf.Pos.Y
+		if elf.Pos.Y() > yMax {
+			yMax = elf.Pos.Y()
 		}
 	}
 	return xMin, xMax + 1, yMin, yMax + 1
@@ -80,11 +80,11 @@ func Part1Val(lines []string) (int, error) {
 	var value int
 
 	moves := Moves{
-		[][]aocutils.Vector{
-			{{0, 1}, {-1, 1}, {1, 1}},
-			{{0, -1}, {-1, -1}, {1, -1}},
-			{{-1, 0}, {-1, -1}, {-1, 1}},
-			{{1, 0}, {1, -1}, {1, 1}},
+		[][]point.Point2D{
+			{point.NewPoint2D(0, 1), point.NewPoint2D(-1, 1), point.NewPoint2D(1, 1)},
+			{point.NewPoint2D(0, -1), point.NewPoint2D(-1, -1), point.NewPoint2D(1, -1)},
+			{point.NewPoint2D(-1, 0), point.NewPoint2D(-1, -1), point.NewPoint2D(-1, 1)},
+			{point.NewPoint2D(1, 0), point.NewPoint2D(1, -1), point.NewPoint2D(1, 1)},
 		},
 	}
 	elves := GetElves(lines)

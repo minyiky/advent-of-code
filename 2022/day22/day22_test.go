@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 	day "github.com/minyiky/advent-of-code/2022/day22"
 	"github.com/stretchr/testify/assert"
 )
@@ -19,20 +19,20 @@ func SetUp() []string {
 	return lines
 }
 
-func GetFirst(line string) aocutils.Vector {
-	var first aocutils.Vector
+func GetFirst(line string) point.Point2D {
+	var first point.Point2D
 	for j, char := range []rune(line) {
 		if char == '.' {
-			first = aocutils.NewVector(j+1, 1)
+			first = point.NewPoint2D(j+1, 1)
 			break
 		}
 	}
 	return first
 }
 
-func ExtractGrid(lines []string) (map[aocutils.Vector]bool, map[aocutils.Vector]bool) {
-	grid := make(map[aocutils.Vector]bool)
-	blocks := make(map[aocutils.Vector]bool)
+func ExtractGrid(lines []string) (map[point.Point2D]bool, map[point.Point2D]bool) {
+	grid := make(map[point.Point2D]bool)
+	blocks := make(map[point.Point2D]bool)
 
 	for i, line := range lines {
 		if line == "" {
@@ -41,10 +41,10 @@ func ExtractGrid(lines []string) (map[aocutils.Vector]bool, map[aocutils.Vector]
 		for j, char := range []rune(line) {
 			switch char {
 			case '#':
-				blocks[aocutils.NewVector(j+1, i+1)] = true
+				blocks[point.NewPoint2D(j+1, i+1)] = true
 				fallthrough
 			case '.':
-				grid[aocutils.NewVector(j+1, i+1)] = true
+				grid[point.NewPoint2D(j+1, i+1)] = true
 			}
 		}
 	}

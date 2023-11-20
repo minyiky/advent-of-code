@@ -6,7 +6,7 @@ import (
 	"sort"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 func Part2Val(lines []string) (int, error) {
@@ -18,17 +18,17 @@ func Part2Val(lines []string) (int, error) {
 		grid[i] = make([]rune, xLen)
 	}
 
-	var start []aocutils.Vector
-	var end aocutils.Vector
+	var start []point.Point2D
+	var end point.Point2D
 	for y, line := range lines {
 		for x, char := range []rune(line) {
 			if char == 'S' || char == 'a' {
-				start = append(start, aocutils.NewVector(x, y))
+				start = append(start, point.NewPoint2D(x, y))
 				grid[y][x] = 'a'
 				continue
 			}
 			if char == 'E' {
-				end = aocutils.NewVector(x, y)
+				end = point.NewPoint2D(x, y)
 				grid[y][x] = 'z'
 				continue
 			}
@@ -36,7 +36,7 @@ func Part2Val(lines []string) (int, error) {
 		}
 	}
 
-	emptyMap := make(map[aocutils.Vector]int)
+	emptyMap := make(map[point.Point2D]int)
 	var values sort.IntSlice
 	for _, s := range start {
 		value, _ := findSummit(s, end, 0, grid, emptyMap)

@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 func getPath(current Valve, route map[string]int, valves map[string]Valve, dest string, len int) int {
@@ -18,7 +18,7 @@ func getPath(current Valve, route map[string]int, valves map[string]Valve, dest 
 		if tunnel == dest {
 			return len
 		}
-		routeCopy := aocutils.CopyMap(route)
+		routeCopy := container.CopyMap(route)
 		if spot, ok := routeCopy[tunnel]; !ok || len < spot {
 			routeCopy[tunnel] = len
 			routes = append(routes, getPath(valves[tunnel], routeCopy, valves, dest, len))
@@ -39,7 +39,7 @@ func getBestRoute(currentValve Valve, viableValves map[string]Valve, paths map[s
 
 	maxPressure := 0
 	for key, dest := range viableValves {
-		mapCopy := aocutils.CopyMap(viableValves)
+		mapCopy := container.CopyMap(viableValves)
 		delete(mapCopy, key)
 		pathLen := paths[currentValve.name][key]
 		pressure := getBestRoute(dest, mapCopy, paths, time+pathLen, startPressure, maxPresure)

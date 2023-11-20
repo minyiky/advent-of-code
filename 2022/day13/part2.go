@@ -5,7 +5,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 func Part2Val(lines []string) (int, error) {
@@ -41,7 +41,7 @@ func Part2Val(lines []string) (int, error) {
 		"[[6]]",
 	}
 	for i, signal := range finalOrder {
-		if _, ok := aocutils.SliceContains(ofInterest, signal); ok {
+		if _, ok := container.SliceContains(ofInterest, signal); ok {
 			value *= (i + 1)
 		}
 	}

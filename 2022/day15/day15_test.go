@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 	day "github.com/minyiky/advent-of-code/2022/day15"
 	"github.com/stretchr/testify/assert"
 )
@@ -34,10 +34,10 @@ func Test_Part2(t *testing.T) {
 	lines := SetUp()
 	expected := 56000011
 
-	bottomLeft := aocutils.NewVector(0, 0)
-	topRight := aocutils.NewVector(20, 20)
+	bottomLeft := point.NewPoint2D(0, 0)
+	topRight := point.NewPoint2D(20, 20)
 
-	val, err := day.Part2Val(lines, bottomLeft, topRight)
+	val, err := day.Part2Val(lines, &bottomLeft, &topRight)
 
 	assert.NoError(t, err)
 	assert.Equal(t, expected, val)

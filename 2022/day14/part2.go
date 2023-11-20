@@ -5,27 +5,27 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
-func sandFallRecursive(start aocutils.Vector, blocked map[aocutils.Vector]bool, yLim int) int {
+func sandFallRecursive(start point.Point2D, blocked map[point.Point2D]bool, yLim int) int {
 	sand := start
 	num := 1
-	if sand.Y == yLim {
+	if sand.Y() == yLim {
 		blocked[sand] = true
 		return num
 	}
 
-	if _, ok := blocked[aocutils.NewVector(sand.X, sand.Y+1)]; !ok {
-		num += sandFallRecursive(aocutils.NewVector(sand.X, sand.Y+1), blocked, yLim)
+	if _, ok := blocked[point.NewPoint2D(sand.X(), sand.Y()+1)]; !ok {
+		num += sandFallRecursive(point.NewPoint2D(sand.X(), sand.Y()+1), blocked, yLim)
 	}
 
-	if _, ok := blocked[aocutils.NewVector(sand.X-1, sand.Y+1)]; !ok {
-		num += sandFallRecursive(aocutils.NewVector(sand.X-1, sand.Y+1), blocked, yLim)
+	if _, ok := blocked[point.NewPoint2D(sand.X()-1, sand.Y()+1)]; !ok {
+		num += sandFallRecursive(point.NewPoint2D(sand.X()-1, sand.Y()+1), blocked, yLim)
 	}
 
-	if _, ok := blocked[aocutils.NewVector(sand.X+1, sand.Y+1)]; !ok {
-		num += sandFallRecursive(aocutils.NewVector(sand.X+1, sand.Y+1), blocked, yLim)
+	if _, ok := blocked[point.NewPoint2D(sand.X()+1, sand.Y()+1)]; !ok {
+		num += sandFallRecursive(point.NewPoint2D(sand.X()+1, sand.Y()+1), blocked, yLim)
 	}
 
 	blocked[sand] = true
@@ -41,7 +41,7 @@ func Part2Val(lines []string) (int, error) {
 	}
 	yLim += 1
 
-	sandStart := aocutils.NewVector(500, 0)
+	sandStart := point.NewPoint2D(500, 0)
 	value = sandFallRecursive(sandStart, blocked, yLim)
 
 	return value, nil

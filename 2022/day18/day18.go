@@ -8,19 +8,19 @@ import (
 	"os"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 //go:embed input.txt
 var input string
 
-var directions = []aocutils.Vector3D{
-	{X: 1, Y: 0, Z: 0},
-	{X: -1, Y: 0, Z: 0},
-	{X: 0, Y: 1, Z: 0},
-	{X: 0, Y: -1, Z: 0},
-	{X: 0, Y: 0, Z: 1},
-	{X: 0, Y: 0, Z: -1},
+var directions = []point.Point3D{
+	point.NewPoint3D(1, 0, 0),
+	point.NewPoint3D(-1, 0, 0),
+	point.NewPoint3D(0, 1, 0),
+	point.NewPoint3D(0, -1, 0),
+	point.NewPoint3D(0, 0, 1),
+	point.NewPoint3D(0, 0, -1),
 }
 
 func Run(w io.Writer) {

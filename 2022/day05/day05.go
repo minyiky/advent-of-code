@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 //go:embed input.txt
@@ -45,7 +45,7 @@ func findStacks(lines []string) ([][]string, []string, error) {
 
 	// Reverse the stacks so the first items are at the top
 	for _, stack := range stacks {
-		aocutils.ReverseSlice(stack)
+		container.ReverseSlice(stack)
 	}
 
 	return stacks, lines, nil

@@ -5,7 +5,7 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 func checkHeight(current, next rune) bool {
@@ -21,16 +21,16 @@ func Part1Val(lines []string) (int, error) {
 		grid[i] = make([]rune, xLen)
 	}
 
-	var start, end aocutils.Vector
+	var start, end point.Point2D
 	for y, line := range lines {
 		for x, char := range []rune(line) {
 			if char == 'S' {
-				start = aocutils.NewVector(x, y)
+				start = point.NewPoint2D(x, y)
 				grid[y][x] = 'a'
 				continue
 			}
 			if char == 'E' {
-				end = aocutils.NewVector(x, y)
+				end = point.NewPoint2D(x, y)
 				grid[y][x] = 'z'
 				continue
 			}
@@ -38,7 +38,7 @@ func Part1Val(lines []string) (int, error) {
 		}
 	}
 
-	emptyMap := make(map[aocutils.Vector]int)
+	emptyMap := make(map[point.Point2D]int)
 
 	value, _ := findSummit(start, end, 0, grid, emptyMap)
 

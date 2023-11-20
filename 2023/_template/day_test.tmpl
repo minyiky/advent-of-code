@@ -1,38 +1,38 @@
-package day17_test
+package day{{.Day}}_test
 
 import (
 	_ "embed"
 	"strings"
 	"testing"
 
-	day "github.com/minyiky/advent-of-code/2022/day17"
+	day "github.com/minyiky/advent-of-code/2022/day{{.Day}}"
 	"github.com/stretchr/testify/assert"
 )
 
 //go:embed input_test.txt
 var input string
 
-func SetUp() string {
+func SetUp() []string {
 	input = strings.ReplaceAll(input, "\r", "")
-	return input
+	lines := strings.Split(input, "\n")
+	return lines
 }
 
 func Test_Part1(t *testing.T) {
-	line := SetUp()
-	expected := 3068
+	lines := SetUp()
+	expected := 0
 
-	val, err := day.Part1Val(line)
+	val, err := day.Part1Val(lines)
 
 	assert.NoError(t, err)
 	assert.Equal(t, expected, val)
 }
 
 func Test_Part2(t *testing.T) {
-	t.Skip("Skipping due to hard coded setup")
-	line := SetUp()
+	lines := SetUp()
 	expected := 0
 
-	val, err := day.Part2Val(line)
+	val, err := day.Part2Val(lines)
 
 	assert.NoError(t, err)
 	assert.Equal(t, expected, val)

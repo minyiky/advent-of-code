@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 //go:embed input.txt
@@ -34,9 +34,9 @@ func getCoords(point string) (int, int, error) {
 	return x, y, nil
 }
 
-func createMap(lines []string) (map[aocutils.Vector]bool, int, error) {
+func createMap(lines []string) (map[point.Point2D]bool, int, error) {
 
-	blocked := make(map[aocutils.Vector]bool)
+	blocked := make(map[point.Point2D]bool)
 	var yBig int
 
 	for _, line := range lines {
@@ -54,7 +54,7 @@ func createMap(lines []string) (map[aocutils.Vector]bool, int, error) {
 			}
 
 			if z == 0 {
-				blocked[aocutils.NewVector(x, y)] = true
+				blocked[point.NewPoint2D(x, y)] = true
 				lastX = x
 				lastY = y
 				continue
@@ -76,7 +76,7 @@ func createMap(lines []string) (map[aocutils.Vector]bool, int, error) {
 			}
 			for j := yStart; j <= yEnd; j++ {
 				for i := xStart; i <= xEnd; i++ {
-					blocked[aocutils.NewVector(i, j)] = true
+					blocked[point.NewPoint2D(i, j)] = true
 				}
 			}
 			lastX = x

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/container"
 )
 
 func Part2Val(lines []string) (int, error) {
@@ -32,7 +32,7 @@ func Part2Val(lines []string) (int, error) {
 		}
 	}
 
-	newList := aocutils.CopySlice(list)
+	newList := container.CopySlice(list)
 
 	for x := 0; x < 10; x++ {
 		for _, num := range list {

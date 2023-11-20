@@ -5,28 +5,28 @@ import (
 	"io"
 	"time"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 type Limits struct {
 	minX, minY, minZ, maxX, maxY, maxZ int
 }
 
-func (l Limits) Outside(p aocutils.Vector3D) bool {
-	return p.X <= l.minX || p.X >= l.maxX || p.Y <= l.minY || p.Y >= l.maxY || p.Z <= l.minZ || p.Z >= l.maxZ
+func (l Limits) Outside(p point.Point3D) bool {
+	return p.X() <= l.minX || p.X() >= l.maxX || p.Y() <= l.minY || p.Y() >= l.maxY || p.Z() <= l.minZ || p.Z() >= l.maxZ
 }
 
-func WayOut(point aocutils.Vector3D, blocks, seen, outside map[aocutils.Vector3D]bool, limits Limits) bool {
-	if blocks[point] {
+func WayOut(pos point.Point3D, blocks, seen, outside map[point.Point3D]bool, limits Limits) bool {
+	if blocks[pos] {
 		return false
 	}
 
-	if outside[point] || limits.Outside(point) {
+	if outside[pos] || limits.Outside(pos) {
 		return true
 	}
 
 	for _, direction := range directions {
-		newPoint := point.Add(direction)
+		newPoint := point.Add(pos, direction)
 		if !seen[newPoint] {
 			seen[newPoint] = true
 			if WayOut(newPoint, blocks, seen, outside, limits) {
@@ -41,13 +41,13 @@ func Part2Val(lines []string) (int, error) {
 	var value int
 	var limits Limits
 
-	grid := make(map[aocutils.Vector3D]bool)
-	isOutside := make(map[aocutils.Vector3D]bool)
+	grid := make(map[point.Point3D]bool)
+	isOutside := make(map[point.Point3D]bool)
 
 	for _, line := range lines {
 		var x, y, z int
 		fmt.Sscanf(line, "%d,%d,%d", &x, &y, &z)
-		grid[aocutils.NewVector3D(x, y, z)] = true
+		grid[point.NewPoint3D(x, y, z)] = true
 		if x < limits.minX {
 			limits.minX = x
 		}
@@ -68,13 +68,13 @@ func Part2Val(lines []string) (int, error) {
 		}
 	}
 
-	for point := range grid {
+	for pos := range grid {
 		for _, direction := range directions {
-			newPoint := point.Add(direction)
+			newPoint := point.Add(pos, direction)
 			if _, ok := grid[newPoint]; !ok {
 				ok, tested := isOutside[newPoint]
 				if !tested {
-					testedMap := make(map[aocutils.Vector3D]bool)
+					testedMap := make(map[point.Point3D]bool)
 					outside := WayOut(newPoint, grid, testedMap, isOutside, limits)
 					if outside {
 						value++

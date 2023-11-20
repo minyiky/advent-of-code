@@ -5,12 +5,12 @@ import (
 	"io"
 	"strings"
 
-	"github.com/minyiky/advent-of-code/2022/aocutils"
+	"github.com/minyiky/advent-of-code-utils/pkg/maths"
 )
 
 func getPixel(spritePos int, cycle int) string {
 	linePos := (cycle - 1) % 40
-	if aocutils.Abs(linePos-spritePos) > 1 {
+	if maths.Abs(linePos-spritePos) > 1 {
 		return " "
 	}
 	return "█"
