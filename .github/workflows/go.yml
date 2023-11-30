@@ -37,7 +37,6 @@ jobs:
     - name: Test
       working-directory: "${{ matrix.year }}"
       run: |
-        set -euo pipefail
         go test -json -v ./day* 2>&1 | gotestfmt | tee /tmp/${{ matrix.year }}_gotest.log
 
     - name: Update badges
