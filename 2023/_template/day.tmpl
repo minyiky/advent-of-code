@@ -2,6 +2,7 @@ package day{{.Day}}
 
 import (
 	_ "embed"
+	"fmt"
 	"io"
 	"log"
 	"os"
@@ -15,7 +16,7 @@ func Run(w io.Writer) {
 	input = strings.ReplaceAll(input, "\r", "")
 	lines := strings.Split(input, "\n")
 
-	fmt.Fprintf(w, "-- Solution for 2022 day {{.Day}} --\n")
+	fmt.Fprintf(w, "-- Solution for 2023 day {{.Day}} --\n")
 	if err := Part1(w , lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
