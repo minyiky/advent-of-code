@@ -47,11 +47,10 @@ jobs:
         num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ✅ || test $? = 1)
         num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ❌ || test $? = 1)
         num_tests=$(expr ${num_pass} + ${num_fail})
-        perc_passed=$(expr ${num_pass} / ${num_tests})
         
-        if [ ${perc_passed} = 1 ]; then
+        if [[ $num_pass -eq $num_tests ]]; then
             colour=success
-        elif [ ${perc_passed} > 0.5 ]; then
+        elif [[ $num_pass -gt $num_fail ]]; then
             colour=important
         else
             colour=critical
