@@ -4,60 +4,34 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-
-	"github.com/minyiky/advent-of-code/2022/day01"
-	"github.com/minyiky/advent-of-code/2022/day02"
-	"github.com/minyiky/advent-of-code/2022/day03"
-	"github.com/minyiky/advent-of-code/2022/day04"
-	"github.com/minyiky/advent-of-code/2022/day05"
-	"github.com/minyiky/advent-of-code/2022/day06"
-	"github.com/minyiky/advent-of-code/2022/day07"
-	"github.com/minyiky/advent-of-code/2022/day08"
-	"github.com/minyiky/advent-of-code/2022/day09"
-	"github.com/minyiky/advent-of-code/2022/day10"
-	"github.com/minyiky/advent-of-code/2022/day11"
-	"github.com/minyiky/advent-of-code/2022/day12"
-	"github.com/minyiky/advent-of-code/2022/day13"
-	"github.com/minyiky/advent-of-code/2022/day14"
-	"github.com/minyiky/advent-of-code/2022/day15"
-	"github.com/minyiky/advent-of-code/2022/day16"
-	"github.com/minyiky/advent-of-code/2022/day17"
-	"github.com/minyiky/advent-of-code/2022/day18"
-	"github.com/minyiky/advent-of-code/2022/day19"
-	"github.com/minyiky/advent-of-code/2022/day20"
-	"github.com/minyiky/advent-of-code/2022/day21"
-	"github.com/minyiky/advent-of-code/2022/day22"
-	"github.com/minyiky/advent-of-code/2022/day23"
-	"github.com/minyiky/advent-of-code/2022/day24"
-	"github.com/minyiky/advent-of-code/2022/day25"
 )
 
 var DayMap = map[string]func(io.Writer){
-	"day01": day01.Run,
-	"day02": day02.Run,
-	"day03": day03.Run,
-	"day04": day04.Run,
-	"day05": day05.Run,
-	"day06": day06.Run,
-	"day07": day07.Run,
-	"day08": day08.Run,
-	"day09": day09.Run,
-	"day10": day10.Run,
-	"day11": day11.Run,
-	"day12": day12.Run,
-	"day13": day13.Run,
-	"day14": day14.Run,
-	"day15": day15.Run,
-	"day16": day16.Run,
-	"day17": day17.Run,
-	"day18": day18.Run,
-	"day19": day19.Run,
-	"day20": day20.Run,
-	"day21": day21.Run,
-	"day22": day22.Run,
-	"day23": day23.Run,
-	"day24": day24.Run,
-	"day25": day25.Run,
+	// "day01": day01.Run,
+	// "day02": day02.Run,
+	// "day03": day03.Run,
+	// "day04": day04.Run,
+	// "day05": day05.Run,
+	// "day06": day06.Run,
+	// "day07": day07.Run,
+	// "day08": day08.Run,
+	// "day09": day09.Run,
+	// "day10": day10.Run,
+	// "day11": day11.Run,
+	// "day12": day12.Run,
+	// "day13": day13.Run,
+	// "day14": day14.Run,
+	// "day15": day15.Run,
+	// "day16": day16.Run,
+	// "day17": day17.Run,
+	// "day18": day18.Run,
+	// "day19": day19.Run,
+	// "day20": day20.Run,
+	// "day21": day21.Run,
+	// "day22": day22.Run,
+	// "day23": day23.Run,
+	// "day24": day24.Run,
+	// "day25": day25.Run,
 }
 
 func main() {
@@ -84,7 +58,7 @@ func handleDay(w http.ResponseWriter, r *http.Request) {
 
 	dayFunc, ok := DayMap[day]
 	if !ok {
-		fmt.Fprintf(w, "I haven't implimented a solution for this day yet!\n")
+		fmt.Fprintf(w, "I haven't implemented a solution for this day yet!\n")
 		return
 	}
 

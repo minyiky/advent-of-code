@@ -2,8 +2,6 @@ module github.com/minyiky/advent-of-code/2021
 
 go 1.21
 
-toolchain go1.21.4
-
 require (
 	github.com/minyiky/advent-of-code-utils v0.3.2
 	github.com/stretchr/testify v1.8.4
