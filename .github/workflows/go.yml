@@ -37,11 +37,13 @@ jobs:
     - name: Test
       working-directory: "${{ matrix.year }}"
       run: |
+        set -x
         go test -json -v ./day* 2>&1 | gotestfmt | tee /tmp/${{ matrix.year }}_gotest.log
 
     - name: Update badges
       working-directory: "${{ matrix.year }}"
       run: |
+        set -x
         num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ✅ || test $? = 1)
         num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ❌ || test $? = 1)
         num_tests=$(expr ${num_pass} + ${num_fail})
