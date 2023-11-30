@@ -49,9 +49,9 @@ jobs:
         num_tests=$(expr ${num_pass} + ${num_fail})
         perc_passed=$(expr ${num_pass} / ${num_tests})
         
-        if [ $perc_passed = 1 ]; then
+        if [ ${perc_passed} = 1 ]; then
             colour=success
-        elif [ $perc_passed > 0.5 ]; then
+        elif [ ${perc_passed} > 0.5 ]; then
             colour=important
         else
             colour=critical
