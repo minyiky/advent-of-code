@@ -1,0 +1,68 @@
+[0;31m📦 github.com/minyiky/advent-of-code/2021/day01[0m
+  [0;31m❌ Test_Part1[0;37m (0s)[0m
+    day01_test.go:40: 
+        	Error Trace:	/home/minyiky/Workspace/aoc/2021/day01/day01_test.go:40
+        	Error:      	Not equal: 
+        	            	expected: 72
+        	            	actual  : 7
+        	Test:       	Test_Part1
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day02[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day03[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day04[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day05[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day06[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day07[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day08[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day09[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day10[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day11[0m
+  [0;32m✅ Test_Part1[0;37m (20ms)[0m
+  [0;32m✅ Test_Part2[0;37m (30ms)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day12[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day13[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day14[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+  [0;32m✅ Test_Part2[0;37m (0s)[0m
+
+[0;32m📦 github.com/minyiky/advent-of-code/2021/day15[0m
+  [0;32m✅ Test_Part1[0;37m (0s)[0m
+3
+  [0;32m✅ Test_Part2[0;37m (170ms)[0m
+53
+

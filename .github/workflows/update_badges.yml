@@ -1,0 +1,27 @@
+name: Update AoC Badges
+on:
+  schedule:
+    - cron: '0 23 1-25 12 *'
+  workflow_dispatch:
+  
+jobs:
+  update:
+    strategy:
+      matrix:
+        year: [2021, 2022, 2023]
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+          
+      - uses: joblo2213/aoc-badges-action@v3
+        with:
+          userid: ${{ secrets.USER_ID }}
+          session: ${{ secrets.AOC_SESSION }}
+          year: ${{ matrix.year }}
+          file: '${{ matrix.year }}/README.md'
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Update badges
+          file_pattern: ${{ matrix.year }}/README.md
