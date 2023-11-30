@@ -44,8 +44,8 @@ jobs:
       working-directory: "${{ matrix.year }}"
       run: |
         set -euo pipefail
-        num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep ✅)
-        num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep ❌)
+        num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ✅)
+        num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ❌)
         num_tests=$(expr $num_pass + $num_fail)
         perc_passed=$(expr $num_pass / $num_tests)
         
