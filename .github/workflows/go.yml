@@ -29,6 +29,7 @@ jobs:
     - name: Set up fake input files
       working-directory: "${{ matrix.year }}"
       run: |
+        go mod tiidy
         find ./day* -maxdepth 0 -type d -exec touch {}/input.txt \;
 
     - name: Test
