@@ -45,9 +45,13 @@ jobs:
       run: |
         set -exuo pipefail
         num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ✅)
+        echo $num_pass
         num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ❌)
+        echo $num_fail
         num_tests=$(expr ${num_pass} + ${num_fail})
+        echo $num_tests
         perc_passed=$(expr ${num_pass} / ${num_tests})
+        echo $perc_passed
         
         if [ ${perc_passed} = 1 ]; then
             colour=success
