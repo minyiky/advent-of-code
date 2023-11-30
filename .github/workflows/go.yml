@@ -26,6 +26,11 @@ jobs:
     - name: Set up gotestfmt
       uses: gotesttools/gotestfmt-action@v2
 
+    - name: Set up fake input files
+      working-directory: "${{ matrix.year }}"
+      run: |
+        find ./day* -maxdepth 0 -type d -exec touch {}/input.txt \;
+
     - name: Test
       working-directory: "${{ matrix.year }}"
       run: |
