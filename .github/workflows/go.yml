@@ -43,6 +43,7 @@ jobs:
     - name: Update badges
       working-directory: "${{ matrix.year }}"
       run: |
+        set -euo pipefail
         num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep ✅)
         num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep ❌)
         num_tests=$(expr $num_pass + $num_fail)
