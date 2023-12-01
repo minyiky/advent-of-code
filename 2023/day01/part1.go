@@ -3,7 +3,6 @@ package day01
 import (
 	"fmt"
 	"io"
-	"strconv"
 	"time"
 )
 
@@ -21,12 +20,7 @@ func Part1Val(lines []string) (int, error) {
 	}
 
 	for _, code := range codes {
-		numStr := fmt.Sprintf("%c%c", code[0], code[len(code)-1])
-		val, err := strconv.Atoi(numStr)
-		if err != nil {
-			return 0, err
-		}
-		value += val
+		value += int(code[0]-'0')*10 + int(code[len(code)-1]-'0')
 	}
 
 	return value, nil
