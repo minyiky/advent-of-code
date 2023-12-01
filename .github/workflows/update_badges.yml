@@ -8,7 +8,7 @@ jobs:
   update:
     strategy:
       matrix:
-        year: [2021, 2022, 2023]
+        year: [2023]
 
     runs-on: ubuntu-latest
     steps:
