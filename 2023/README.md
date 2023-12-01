@@ -10,7 +10,7 @@ Here are my results for the [2021 advent of code](https://adventofcode.com/2021)
 
 |              *Day*              | *Stars* |  *Solution*  |                         *Notes*                         |
 |---------------------------------|---------|--------------|---------------------------------------------------------|
-| Day 1: Trebuchet?!              |  ⭐⭐  | [go](day01/) | |
+| Day 1: Trebuchet?!              |  ⭐⭐  | [go](day01/) | This day was an exercise in string parsing to find digits written as digits and spelled out |
 
 
 
