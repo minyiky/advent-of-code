@@ -12,15 +12,18 @@ import (
 //go:embed input_test.txt
 var input string
 
-func SetUp() []string {
+//go:embed input2_test.txt
+var input2 string
+
+func SetUp(input string) []string {
 	input = strings.ReplaceAll(input, "\r", "")
 	lines := strings.Split(input, "\n")
 	return lines
 }
 
 func Test_Part1(t *testing.T) {
-	lines := SetUp()
-	expected := 0
+	lines := SetUp(input)
+	expected := 142
 
 	val, err := day.Part1Val(lines)
 
@@ -29,8 +32,8 @@ func Test_Part1(t *testing.T) {
 }
 
 func Test_Part2(t *testing.T) {
-	lines := SetUp()
-	expected := 0
+	lines := SetUp(input2)
+	expected := 281
 
 	val, err := day.Part2Val(lines)
 

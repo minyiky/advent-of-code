@@ -1,7 +1,13 @@
 package main
 
+import (
+	"os"
+
+	"github.com/minyiky/advent-of-code/2023/day01"
+)
+
 func main() {
-	// day01.Run(os.Stdout)
+	day01.Run(os.Stdout)
 	// day02.Run(os.Stdout)
 	// day03.Run(os.Stdout)
 	// day04.Run(os.Stdout)
