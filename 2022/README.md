@@ -1,7 +1,7 @@
 # 2022 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-55/58-important)
-![](https://img.shields.io/badge/day%20📅-25-blue)
+![](https://img.shields.io/badge/day%20📅-24-blue)
 ![](https://img.shields.io/badge/stars%20⭐-50-yellow)
 ![](https://img.shields.io/badge/days%20completed-25-red)
 
