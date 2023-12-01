@@ -3,11 +3,22 @@ package day01
 import (
 	"fmt"
 	"io"
+	"strings"
 	"time"
 )
 
 func Part2Val(lines []string) (int, error) {
-	return calculate(lines)
+	value := 0
+
+	words := []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
+
+	for _, line := range lines {
+		for i, word := range words {
+			line = strings.Replace(line, word, fmt.Sprintf("%s%d%s", word[0:1], i, word[1:len(word)]), -1)
+		}
+		value += calculate(line)
+	}
+	return value, nil
 }
 
 func Part2(w io.Writer, lines []string) error {

@@ -1,11 +1,11 @@
-# 2021 Advent of Code solutions
+# 2023 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-1/2-critical)
 ![](https://img.shields.io/badge/day%20📅-0-blue)
 ![](https://img.shields.io/badge/stars%20⭐-0-yellow)
 ![](https://img.shields.io/badge/days%20completed-0-red)
 
-Here are my results for the [2021 advent of code](https://adventofcode.com/2021) competition
+Here are my results for the [2023 advent of code](https://adventofcode.com/2021) competition
 
 
 |              *Day*              | *Stars* |  *Solution*  |                         *Notes*                         |

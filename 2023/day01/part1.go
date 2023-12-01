@@ -7,22 +7,11 @@ import (
 )
 
 func Part1Val(lines []string) (int, error) {
-	var value int
+	value := 0
 
-	codes := make([][]rune, len(lines))
-
-	for i, line := range lines {
-		for _, char := range line {
-			if char-'0' >= 0 && char-'0' <= 9 {
-				codes[i] = append(codes[i], char)
-			}
-		}
+	for _, line := range lines {
+		value += calculate(line)
 	}
-
-	for _, code := range codes {
-		value += int(code[0]-'0')*10 + int(code[len(code)-1]-'0')
-	}
-
 	return value, nil
 }
 

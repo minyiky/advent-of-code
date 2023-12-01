@@ -12,29 +12,18 @@ import (
 //go:embed input.txt
 var input string
 
-func calculate(lines []string) (int, error) {
+func calculate(line string) int {
 	var value int
 
-	codes := make([][]rune, len(lines))
-
-	words := []string{"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"}
-
-	for i, line := range lines {
-		for i, word := range words {
-			line = strings.Replace(line, word, fmt.Sprintf("%d", i), -1)
-		}
-		for _, char := range line {
-			if char-'0' >= 0 && char-'0' <= 9 {
-				codes[i] = append(codes[i], char)
-			}
+	code := make([]rune, 0)
+	for _, char := range line {
+		if char-'0' >= 0 && char-'0' <= 9 {
+			code = append(code, char)
 		}
 	}
+	value += int(code[0]-'0')*10 + int(code[len(code)-1]-'0')
 
-	for _, code := range codes {
-		value += int(code[0]-'0')*10 + int(code[len(code)-1]-'0')
-	}
-
-	return value, nil
+	return value
 }
 
 func Run(w io.Writer) {
