@@ -1,6 +1,6 @@
 # 2021 Advent of Code solutions
 
-![](https://img.shields.io/badge/tests%20passed%20🐹-2/2-success)
+![](https://img.shields.io/badge/tests%20passed%20🐹-1/2-critical)
 ![](https://img.shields.io/badge/day%20📅-0-blue)
 ![](https://img.shields.io/badge/stars%20⭐-0-yellow)
 ![](https://img.shields.io/badge/days%20completed-0-red)
