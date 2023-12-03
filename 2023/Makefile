@@ -10,4 +10,4 @@ test:
 	@go test -json ./day* | gotestfmt
 
 input:
-	find ./day* -maxdepth 0 -type d -exec touch {}/example.txt \;
+	find ./day* -maxdepth 0 -type d -exec touch {}/input.txt \;
