@@ -6,13 +6,16 @@ import (
 	"net/http"
 
 	"github.com/minyiky/advent-of-code/2023/day01"
+	"github.com/minyiky/advent-of-code/2023/day02"
+	"github.com/minyiky/advent-of-code/2023/day03"
+	"github.com/minyiky/advent-of-code/2023/day04"
 )
 
 var DayMap = map[string]func(io.Writer){
 	"day01": day01.Run,
-	// "day02": day02.Run,
-	// "day03": day03.Run,
-	// "day04": day04.Run,
+	"day02": day02.Run,
+	"day03": day03.Run,
+	"day04": day04.Run,
 	// "day05": day05.Run,
 	// "day06": day06.Run,
 	// "day07": day07.Run,

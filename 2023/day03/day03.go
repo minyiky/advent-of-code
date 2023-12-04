@@ -17,16 +17,17 @@ func Run(w io.Writer) {
 	lines := strings.Split(input, "\n")
 
 	fmt.Fprintf(w, "-- Solution for 2023 day 03 --\n")
-	if err := Part1(w , lines); err != nil {
+	if err := Part1(w, lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
 		}
 	}
-	if err := Part2(w , lines); err != nil {
+	if err := Part2(w, lines); err != nil {
 		if err != nil {
 			log.Fatal(err)
 			os.Exit(1)
 		}
 	}
+	fmt.Println("")
 }

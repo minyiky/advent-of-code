@@ -43,4 +43,5 @@ func Run(w io.Writer) {
 			os.Exit(1)
 		}
 	}
+	fmt.Println("")
 }
