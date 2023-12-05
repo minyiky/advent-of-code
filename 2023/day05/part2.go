@@ -13,7 +13,6 @@ type seedInfo struct {
 }
 
 func translateRanges(input seedInfo, converters []converter) []seedInfo {
-	// fmt.Println("INPUTS:", input, converters)
 	outputs := make([]seedInfo, 0)
 	for _, converter := range converters {
 		if input.start >= converter.start && input.start < converter.start+converter.length {
@@ -26,7 +25,6 @@ func translateRanges(input seedInfo, converters []converter) []seedInfo {
 				break
 			}
 			newLength := converter.start + converter.length - input.start
-			// fmt.Println(input, converter, newLength)
 			outputs = append(outputs, seedInfo{
 				start:  input.start - converter.start + converter.target,
 				length: newLength,
@@ -40,7 +38,6 @@ func translateRanges(input seedInfo, converters []converter) []seedInfo {
 	if input.length > 0 {
 		outputs = append(outputs, input)
 	}
-	// fmt.Println("OUPUTS:", outputs)
 	return outputs
 }
 
@@ -123,18 +120,6 @@ func Part2Val(lines []string) (int, error) {
 	})
 
 	return finalSeeds[0].start, nil
-
-	// i := 0
-	// for {
-	// 	seed := i
-	// 	for j := len(converterRoute) - 1; j >= 0; j-- {
-	// 		seed = reverse(seed, converterRoute[j])
-	// 	}
-	// 	if checkSeeds(seed, seeds) {
-	// 		return i, nil
-	// 	}
-	// 	i++
-	// }
 }
 
 func Part2(w io.Writer, lines []string) error {
