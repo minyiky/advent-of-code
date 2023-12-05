@@ -83,7 +83,7 @@ func Part1(w io.Writer, lines []string) error {
 		return err
 	}
 	duration := time.Since(start)
-	fmt.Fprintf(w, "The value found was: %d\n", value)
+	fmt.Fprintf(w, "The gear ratio was: %d\n", value)
 	fmt.Fprintf(w, "This took %.2fms\n", float64(duration)/1e6)
 	return nil
 }
