@@ -41,24 +41,6 @@ func translateRanges(input seedInfo, converters []converter) []seedInfo {
 	return outputs
 }
 
-func reverse(input int, converters []converter) int {
-	for _, converter := range converters {
-		if input >= converter.target && input < converter.target+converter.length {
-			return input - converter.target + converter.start
-		}
-	}
-	return input
-}
-
-func checkSeeds(val int, seedInfos []seedInfo) bool {
-	for _, info := range seedInfos {
-		if val >= info.start && val < info.start+info.length {
-			return true
-		}
-	}
-	return false
-}
-
 func Part2Val(lines []string) (int, error) {
 	seeds := make([]seedInfo, 0)
 
