@@ -7,13 +7,35 @@ import (
 )
 
 func Part1Val(lines []string) (int, error) {
-	var value int
+	nodes := make(map[string]Node)
 
-	for _, line := range lines{
-		_ = line
+	for _, line := range lines[2:] {
+		matches := r.FindAllString(line, -1)
+		node := Node{
+			paths: map[rune]string{
+				'L': matches[1],
+				'R': matches[2],
+			},
+		}
+		nodes[matches[0]] = node
 	}
 
-	return value, nil
+	i := 1
+
+	node := nodes["AAA"]
+
+loop:
+	for {
+		for _, dir := range lines[0] {
+			next := node.paths[dir]
+			if next == "ZZZ" {
+				break loop
+			}
+			node = nodes[next]
+			i++
+		}
+	}
+	return i, nil
 }
 
 func Part1(w io.Writer, lines []string) error {
