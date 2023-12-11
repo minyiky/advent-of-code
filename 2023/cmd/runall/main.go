@@ -10,6 +10,10 @@ import (
 	"github.com/minyiky/advent-of-code/2023/day05"
 	"github.com/minyiky/advent-of-code/2023/day06"
 	"github.com/minyiky/advent-of-code/2023/day07"
+	"github.com/minyiky/advent-of-code/2023/day08"
+	"github.com/minyiky/advent-of-code/2023/day09"
+	"github.com/minyiky/advent-of-code/2023/day10"
+	"github.com/minyiky/advent-of-code/2023/day11"
 )
 
 func main() {
@@ -20,10 +24,10 @@ func main() {
 	day05.Run(os.Stdout)
 	day06.Run(os.Stdout)
 	day07.Run(os.Stdout)
-	// day08.Run(os.Stdout)
-	// day09.Run(os.Stdout)
-	// day10.Run(os.Stdout)
-	// day11.Run(os.Stdout)
+	day08.Run(os.Stdout)
+	day09.Run(os.Stdout)
+	day10.Run(os.Stdout)
+	day11.Run(os.Stdout)
 	// day12.Run(os.Stdout)
 	// day13.Run(os.Stdout)
 	// day14.Run(os.Stdout)

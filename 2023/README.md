@@ -17,6 +17,10 @@ Here are my results for the [2023 advent of code](https://adventofcode.com/2021)
 | Day 5: If You Give A Seed A Fertilizer |  ⭐⭐  | [go](day05/) | A difficult day this early one with lots of room to turn your PC into a space heater, or run for a long time, some potential optimisations ended up being detrimental |
 | Day 6: Wait for it              |  ⭐⭐  | [go](day06/) | It was time to bring out the GCSE maths today and solve a quadratic equation |
 | Day 7: Camel Cards              |  ⭐⭐  | [go](day07/) | Poker with a twist, read the rules carefully and don't forget that you can have 5 of a kind |
+| Day 8: Haunted Wasteland        |  ⭐⭐  | [go](day08/) | Day 8 was generally a simple route following exercise but part two required inspection of input for a hidden constraint |
+| Day 9: Mirage Maintenance       |  ⭐⭐  | [go](day09/) |  |
+| Day 10: Pipe Maze               |  ⭐⭐  | [go](day10/) |  |
+| Day 11: Cosmic Expansion        |  ⭐⭐  | [go](day11/) |  |
 
 
 

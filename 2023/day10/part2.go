@@ -5,11 +5,35 @@ import (
 	"io"
 	"time"
 
+	"github.com/fatih/color"
 	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 type limits struct {
 	minX, maxX, minY, maxY int
+}
+
+var (
+	r = color.New(color.FgRed)
+	g = color.New(color.FgGreen)
+)
+
+func convertChar(input rune) rune {
+	switch input {
+	case '-':
+		return '─'
+	case '|':
+		return '│'
+	case 'L':
+		return '└'
+	case 'F':
+		return '┌'
+	case 'J':
+		return '┘'
+	case '7':
+		return '┐'
+	}
+	return 'X'
 }
 
 func (l limits) Outside(p point.Point2D) bool {
@@ -195,6 +219,26 @@ func Part2Val(lines []string) (int, error) {
 				value++
 			}
 		}
+	}
+
+	for y, line := range newLines {
+		if y%2 == 1 {
+			continue
+		}
+		for x, char := range line {
+			if x%2 == 1 {
+				continue
+			}
+			p := point.NewPoint2D(x, -y)
+			if loop[p] {
+				fmt.Print(string(convertChar(rune(char))))
+			} else if inside[p] {
+				g.Print(string(convertChar(char)))
+			} else {
+				r.Print(string(convertChar(char)))
+			}
+		}
+		fmt.Println()
 	}
 
 	return value, nil
