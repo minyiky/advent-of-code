@@ -3,14 +3,26 @@ package day12
 import (
 	"fmt"
 	"io"
+	"strconv"
+	"strings"
 	"time"
 )
 
 func Part1Val(lines []string) (int, error) {
 	var value int
 
-	for _, line := range lines{
-		_ = line
+	for _, line := range lines {
+		cogPart, numPart, _ := strings.Cut(line, " ")
+
+		numbersStr := rNum.FindAllString(numPart, -1)
+		numbers := make([]int, len(numbersStr))
+		for j, numberStr := range numbersStr {
+			numbers[j], _ = strconv.Atoi(numberStr)
+		}
+
+		cache := make(map[Key]int)
+		v := dp(cogPart, numbers, 0, 0, 0, cache)
+		value += v
 	}
 
 	return value, nil

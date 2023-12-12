@@ -21,6 +21,7 @@ Here are my results for the [2023 advent of code](https://adventofcode.com/2021)
 | Day 9: Mirage Maintenance       |  ⭐⭐  | [go](day09/) |  |
 | Day 10: Pipe Maze               |  ⭐⭐  | [go](day10/) |  |
 | Day 11: Cosmic Expansion        |  ⭐⭐  | [go](day11/) |  |
+| Day 12: Cosmic Expansion        |  ⭐⭐  | [go](day12/) | as is common part one was brute forcable by combinatorics but that would not work for part two, instead a [dp](https://stackoverflow.blog/2022/01/31/the-complete-beginners-guide-to-dynamic-programming/) appraoch needed to be taken |
 
 
 
