@@ -1,9 +1,9 @@
 # 2023 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-30/30-success)
-![](https://img.shields.io/badge/day%20📅-12-blue)
-![](https://img.shields.io/badge/stars%20⭐-24-yellow)
-![](https://img.shields.io/badge/days%20completed-12-red)
+![](https://img.shields.io/badge/day%20📅-13-blue)
+![](https://img.shields.io/badge/stars%20⭐-26-yellow)
+![](https://img.shields.io/badge/days%20completed-13-red)
 
 Here are my results for the [2023 advent of code](https://adventofcode.com/2021) competition
 
