@@ -3,14 +3,23 @@ package day15
 import (
 	"fmt"
 	"io"
+	"strings"
 	"time"
 )
 
 func Part1Val(lines []string) (int, error) {
 	var value int
 
-	for _, line := range lines{
-		_ = line
+	line := lines[0]
+
+	for _, part := range strings.Split(line, ",") {
+		subval := 0
+		for _, char := range part {
+			subval += int(char)
+			subval *= 17
+			subval %= 256
+		}
+		value += subval
 	}
 
 	return value, nil
