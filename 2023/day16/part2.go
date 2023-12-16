@@ -11,28 +11,50 @@ import (
 func Part2Val(lines []string) (int, error) {
 	var value int
 
-	for i := range lines {
-		cache := make(map[point.Point2D]map[point.Point2D]bool)
-		move(point.NewPoint2D(0, i), right, lines, cache)
-		value = max(value, len(cache))
-	}
+	valC := make(chan int)
 
-	for i := range lines {
-		cache := make(map[point.Point2D]map[point.Point2D]bool)
-		move(point.NewPoint2D(len(lines[0])-1, i), left, lines, cache)
-		value = max(value, len(cache))
-	}
+	go func(c chan<- int) {
+		value := 0
+		for i := range lines {
+			cache := make(map[point.Point2D]map[point.Point2D]bool)
+			move(point.NewPoint2D(0, i), right, lines, cache)
+			value = max(value, len(cache))
+		}
+		c <- value
+	}(valC)
 
-	for i := range lines[0] {
-		cache := make(map[point.Point2D]map[point.Point2D]bool)
-		move(point.NewPoint2D(i, 0), down, lines, cache)
-		value = max(value, len(cache))
-	}
+	go func(c chan<- int) {
+		value := 0
+		for i := range lines {
+			cache := make(map[point.Point2D]map[point.Point2D]bool)
+			move(point.NewPoint2D(len(lines[0])-1, i), left, lines, cache)
+			value = max(value, len(cache))
+		}
+		c <- value
+	}(valC)
 
-	for i := range lines[0] {
-		cache := make(map[point.Point2D]map[point.Point2D]bool)
-		move(point.NewPoint2D(i, len(lines)-1), up, lines, cache)
-		value = max(value, len(cache))
+	go func(c chan<- int) {
+		value := 0
+		for i := range lines[0] {
+			cache := make(map[point.Point2D]map[point.Point2D]bool)
+			move(point.NewPoint2D(i, 0), down, lines, cache)
+			value = max(value, len(cache))
+		}
+		c <- value
+	}(valC)
+
+	go func(c chan<- int) {
+		value := 0
+		for i := range lines[0] {
+			cache := make(map[point.Point2D]map[point.Point2D]bool)
+			move(point.NewPoint2D(i, len(lines)-1), up, lines, cache)
+			value = max(value, len(cache))
+		}
+		c <- value
+	}(valC)
+
+	for i := 0; i < 4; i++ {
+		value = max(value, <-valC)
 	}
 
 	return value, nil
