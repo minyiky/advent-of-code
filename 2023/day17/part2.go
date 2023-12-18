@@ -4,14 +4,24 @@ import (
 	"fmt"
 	"io"
 	"time"
+
+	"github.com/minyiky/advent-of-code-utils/pkg/point"
 )
 
 func Part2Val(lines []string) (int, error) {
 	var value int
+	grid := make(map[point.Point2D]int)
 
-	for _, line := range lines{
-		_ = line
+	for j, line := range lines {
+		for i, char := range line {
+			grid[point.NewPoint2D(i, j)] = int(char - '0')
+		}
 	}
+
+	start := point.NewPoint2D(0, 0)
+	goal := point.NewPoint2D(len(lines[0])-1, len(lines)-1)
+
+	value = run(start, goal, grid, 4, 10)
 
 	return value, nil
 }

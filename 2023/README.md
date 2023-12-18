@@ -26,7 +26,7 @@ Here are my results for the [2023 advent of code](https://adventofcode.com/2021)
 | Day 14: Parabolic Reflector Dish |  ⭐⭐  | [go](day14/) | Rotations and directions caught me out for a bit, and brute forcing again won't work, take time to print out a subsection of results to spot the trick |
 | Day 15: Lens Library             |  ⭐⭐  | [go](day15/) | One of the easier days to code but the part instructions took a while to parse. More use of golang runes for calculations |
 | Day 16: The Floor Will Be Lava   |  ⭐⭐  | [go](day16/) | Another "pipe" day with routes to follow, part 2 was a natural extension of part 1. Watch out for infinites |
-
+| Day 17: Clumsy Crucible          |  ⭐⭐  | [go](day17/) | Today was the time to break out the better search algorithms. Todays solution was heavily inspired by [mnml](https://github.com/mnml/aoc/blob/main/2023/17/1.go) |
 
 
 ## Running the code

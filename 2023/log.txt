@@ -1,0 +1,9 @@
+go run day$(date +%d)/cmd/main.go
+-- Solution for 2023 day 18 --
+###
+#.#
+###
+The value found was: 8
+This took 0.05ms
+The value found was: 0
+This took 0.00ms
