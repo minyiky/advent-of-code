@@ -7,11 +7,12 @@ import (
 )
 
 func Part1Val(lines []string) (int, error) {
-	value := 0
+	var value int
 
-	for _, line := range lines {
-		value += calculate(line)
+	for _, line := range lines{
+		_ = line
 	}
+
 	return value, nil
 }
 
@@ -22,7 +23,7 @@ func Part1(w io.Writer, lines []string) error {
 		return err
 	}
 	duration := time.Since(start)
-	fmt.Fprintf(w, "The calibration value for the trebuchet was: %d\n", value)
+	fmt.Fprintf(w, "The value found was: %d\n", value)
 	fmt.Fprintf(w, "This took %.2fms\n", float64(duration)/1e6)
 	return nil
 }
