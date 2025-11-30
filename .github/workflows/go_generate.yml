@@ -5,7 +5,7 @@ name: Template Generation
 
 on:
   schedule:
-    - cron: '0 01 1-25 12 *'
+    - cron: '0 06 1-25 12 *'
   workflow_dispatch:
 
 jobs:
@@ -18,10 +18,10 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v3
       with:
-        go-version: 1.21
+        go-version: 1.25
 
     - name: Generate
-      working-directory: "2023"
+      working-directory: "2025"
       run: |
         if [ ! -d $(date +%D) ]; then
           go run _template/generate.go
