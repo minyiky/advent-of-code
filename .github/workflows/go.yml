@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        year: [2021, 2022, 2023]
+        year: [2025]
     steps:
     - uses: actions/checkout@v3
 
@@ -47,7 +47,7 @@ jobs:
         num_pass=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ✅ || test $? = 1)
         num_fail=$(cat /tmp/${{ matrix.year }}_gotest.log | grep -c ❌ || test $? = 1)
         num_tests=$(expr ${num_pass} + ${num_fail})
-        
+
         if [[ $num_pass -eq $num_tests ]]; then
             colour=success
         elif [[ $num_pass -gt $num_fail ]]; then
@@ -55,9 +55,8 @@ jobs:
         else
             colour=critical
         fi
-        
+
         sed -i "s/[0-9]\+\/[0-9]\+-[a-z]\+/$num_pass\/${num_tests}-${colour}/" README.md
-      
 
     - uses: stefanzweifel/git-auto-commit-action@v4     # Step that pushes these local changes back to your github repo
       with:
