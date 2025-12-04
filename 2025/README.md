@@ -1,9 +1,9 @@
 # 2025 Advent of Code solutions
 
 ![](https://img.shields.io/badge/tests%20passed%20🐹-54/54-success)
-![](https://img.shields.io/badge/day%20📅-25-blue)
-![](https://img.shields.io/badge/stars%20⭐-39-yellow)
-![](https://img.shields.io/badge/days%20completed-19-red)
+![](https://img.shields.io/badge/day%20📅-4-blue)
+![](https://img.shields.io/badge/stars%20⭐-8-yellow)
+![](https://img.shields.io/badge/days%20completed-4-red)
 
 Here are my results for the [2025 advent of code](https://adventofcode.com/2021) competition
 
