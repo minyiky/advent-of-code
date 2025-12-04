@@ -38,6 +38,7 @@ jobs:
         pip install advent-of-code-data
 
     - name: Fetch example file
+      working-directory: "2025"
       env:
         AOC_SESSION: ${{ secrets.AOC_SESSION }}
       run: make fetch-example

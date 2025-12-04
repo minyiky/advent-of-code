@@ -8,12 +8,12 @@ jobs:
   update:
     strategy:
       matrix:
-        year: [2023]
+        year: [2025]
 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-          
+
       - uses: joblo2213/aoc-badges-action@v3
         with:
           userid: ${{ secrets.USER_ID }}
