@@ -11,9 +11,10 @@ Here are my results for the [2025 advent of code](https://adventofcode.com/2021)
 |              *Day*              | *Stars* |  *Solution*  |                         *Notes*                         |
 |---------------------------------|---------|--------------|---------------------------------------------------------|
 | Day 1: Secret Entrance |  ⭐⭐  | [go](day01/) | some interesting modular arithmetic today, a surprising number of places to get caught out by a day one puzzle |
-| Day 2: Gift Shop |  ⭐⭐  | [go](day02/) | Pattern matching today, there is a nice regexp trick if your language support back referencing but unfortunatley go does not. I took a slightly less brute force approach today by constructing the patterns and looking for matches rather than looping through all numbers |
-| Day 3: Lobby |  ⭐⭐  | [go](day03/) | There were a few ways to attempt today's puzzle, I took the approach of looping from 9 down to 1 to find the first instance of the character and then sustringing from there to create a smaller set. |
+| Day 2: Gift Shop |  ⭐⭐  | [go](day02/) | Pattern matching today, there is a nice regexp trick if your language support back referencing but unfortunately go does not. I took a slightly less brute force approach today by constructing the patterns and looking for matches rather than looping through all numbers |
+| Day 3: Lobby |  ⭐⭐  | [go](day03/) | There were a few ways to attempt today's puzzle, I took the approach of looping from 9 down to 1 to find the first instance of the character and then substringing from there to create a smaller set. |
 | Day 4: Printing Department |  ⭐⭐  | [go](day04/) | A classic grid problem today, part 2 was solvable by using part 1 in a loop with efficiencies made  by only check neighbours of removed stacks |
+| Day 5: Cafeteria |  ⭐⭐  | [go](day05/) | A bit of additional processing at the start made part 2 a breeze today |
 
 
 ## Running the code

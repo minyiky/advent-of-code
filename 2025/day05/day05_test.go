@@ -5,7 +5,7 @@ import (
 	"strings"
 	"testing"
 
-	day "github.com/minyiky/advent-of-code/2023/day05"
+	day "github.com/minyiky/advent-of-code/2025/day05"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -20,7 +20,7 @@ func SetUp() []string {
 
 func Test_Part1(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 3
 
 	val, err := day.Part1Val(lines)
 
@@ -30,7 +30,7 @@ func Test_Part1(t *testing.T) {
 
 func Test_Part2(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 14
 
 	val, err := day.Part2Val(lines)
 
