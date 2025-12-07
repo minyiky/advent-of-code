@@ -18,15 +18,11 @@ func Run(w io.Writer) {
 
 	fmt.Fprintf(w, "-- Solution for 2025 day {{.Day}} --\n")
 	if err := Part1(w , lines); err != nil {
-		if err != nil {
-			log.Fatal(err)
-			os.Exit(1)
-		}
+		log.Fatal(err)
+		os.Exit(1)
 	}
 	if err := Part2(w , lines); err != nil {
-		if err != nil {
-			log.Fatal(err)
-			os.Exit(1)
-		}
+		log.Fatal(err)
+		os.Exit(1)
 	}
 }

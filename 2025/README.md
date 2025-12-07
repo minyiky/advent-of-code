@@ -15,6 +15,8 @@ Here are my results for the [2025 advent of code](https://adventofcode.com/2021)
 | Day 3: Lobby |  ⭐⭐  | [go](day03/) | There were a few ways to attempt today's puzzle, I took the approach of looping from 9 down to 1 to find the first instance of the character and then substringing from there to create a smaller set. |
 | Day 4: Printing Department |  ⭐⭐  | [go](day04/) | A classic grid problem today, part 2 was solvable by using part 1 in a loop with efficiencies made  by only check neighbours of removed stacks |
 | Day 5: Cafeteria |  ⭐⭐  | [go](day05/) | A bit of additional processing at the start made part 2 a breeze today |
+| Day 5: Trash Compacter |  ⭐⭐  | [go](day06/) | input parsing made today a bit more challenging but careful logic made it ok. A day that was actually easier in excel |
+| Day 7: Laboratories |  ⭐⭐  | [go](day07/) | A classic BFS / DFS search today where memoisation was key. Benching revealved my DFS solution was ~25-50% quicker than my BFS solution |
 
 
 ## Running the code

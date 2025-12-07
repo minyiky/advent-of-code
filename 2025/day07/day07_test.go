@@ -20,7 +20,7 @@ func SetUp() []string {
 
 func Test_Part1(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 21
 
 	val, err := day.Part1Val(lines)
 
@@ -30,10 +30,28 @@ func Test_Part1(t *testing.T) {
 
 func Test_Part2(t *testing.T) {
 	lines := SetUp()
-	expected := 0
+	expected := 40
 
 	val, err := day.Part2Val(lines)
 
 	assert.NoError(t, err)
 	assert.Equal(t, expected, val)
+}
+
+func Benchmark_Part2_DFS(b *testing.B) {
+	lines := SetUp()
+	maxHeight, splitters, start := day.ParseInput(lines)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		day.SolveDFS(maxHeight, splitters, start)
+	}
+}
+
+func Benchmark_Part2_BFS(b *testing.B) {
+	lines := SetUp()
+	maxHeight, splitters, start := day.ParseInput(lines)
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		day.SolveBFS(maxHeight, splitters, start)
+	}
 }

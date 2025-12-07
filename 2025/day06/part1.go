@@ -1,16 +1,51 @@
 package day06
 
 import (
+	"errors"
 	"fmt"
 	"io"
+	"strconv"
+	"strings"
 	"time"
 )
 
 func Part1Val(lines []string) (int, error) {
 	var value int
 
-	for _, line := range lines{
-		_ = line
+	if len(lines) < 4 {
+		return 0, errors.New("not enough lines in the input")
+	}
+
+	nums := make([][]string, 0, len(lines)-1)
+	ops := strings.Fields(lines[len(lines)-1])
+
+	for _, line := range lines[:len(lines)-1] {
+		nums = append(nums, strings.Fields(line))
+	}
+
+	for i := range ops {
+		switch ops[i] {
+		case "*":
+			prod := 1
+			for _, row := range nums {
+				n, err := strconv.Atoi(row[i])
+				if err != nil {
+					return 0, err
+				}
+				prod *= n
+			}
+			value += prod
+		case "+":
+			for _, row := range nums {
+				n, err := strconv.Atoi(row[i])
+				if err != nil {
+					return 0, err
+				}
+				value += n
+			}
+		default:
+			return 0, fmt.Errorf("unexpected operator: %s", ops[i])
+		}
 	}
 
 	return value, nil

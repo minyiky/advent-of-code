@@ -4,34 +4,36 @@ import (
 	"fmt"
 	"io"
 	"time"
+
+	"github.com/minyiky/advent-of-code/2025/helpers/point"
 )
 
 func Part1Val(lines []string) (int, error) {
-	grid := make(map[Point]struct{})
+	grid := make(map[point.Point]struct{})
 
 	for j, line := range lines {
 		for i, char := range line {
 			if char == '@' {
-				grid[Point{i, j}] = struct{}{}
+				grid[point.Point{i, j}] = struct{}{}
 			}
 		}
 	}
 
-	safeSet := make(map[Point]struct{})
-	for point := range grid {
+	safeSet := make(map[point.Point]struct{})
+	for p := range grid {
 		numBordering := 0
-		for _, d := range Cardinals {
-			if _, ok := grid[point.Add(d)]; ok {
+		for _, d := range point.Cardinals {
+			if _, ok := grid[p.Add(d)]; ok {
 				numBordering++
 			}
 		}
-		for _, d := range Diagonals {
-			if _, ok := grid[point.Add(d)]; ok {
+		for _, d := range point.Diagonals {
+			if _, ok := grid[p.Add(d)]; ok {
 				numBordering++
 			}
 		}
 		if numBordering < 4 {
-			safeSet[point] = struct{}{}
+			safeSet[p] = struct{}{}
 		}
 	}
 
@@ -39,9 +41,9 @@ func Part1Val(lines []string) (int, error) {
 	// for j := 0; j < len(lines); j++ {
 	// 	line := ""
 	// 	for i := 0; i < len(lines[j]); i++ {
-	// 		if _, ok := safeSet[Point{i, j}]; ok {
+	// 		if _, ok := safeSet[point.Point{i, j}]; ok {
 	// 			line += "x"
-	// 		} else if _, ok := grid[Point{i, j}]; ok {
+	// 		} else if _, ok := grid[point.Point{i, j}]; ok {
 	// 			line += "@"
 	// 		} else {
 	// 			line += "."

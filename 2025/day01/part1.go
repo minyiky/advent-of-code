@@ -10,24 +10,14 @@ func Part1Val(lines []string) (int, error) {
 	return Part1ValWithViz(lines, nil, 1.0)
 }
 
-// Part1ValWithViz runs Part1 with visualization support using factory pattern
-func Part1ValWithViz(lines []string, vizFactory func(setup map[string]interface{}) func(data map[string]interface{}), speed float64) (int, error) {
+// Part1ValWithViz runs Part1 with visualization support
+func Part1ValWithViz(lines []string, vizCallback func(data map[string]interface{}), speed float64) (int, error) {
 	var value int
 	lockValue := 50
 
-	// Initialize visualization with setup data
-	var vizFn func(data map[string]interface{})
-	if vizFactory != nil {
-		vizFn = vizFactory(map[string]interface{}{
-			"type":         "dial",
-			"maxValue":     100,
-			"instructions": lines,
-		})
-	}
-
 	// Send initial state
-	if vizFn != nil {
-		vizFn(map[string]interface{}{
+	if vizCallback != nil {
+		vizCallback(map[string]interface{}{
 			"position":         lockValue,
 			"counter":          value,
 			"instructionIndex": -1,
@@ -73,8 +63,8 @@ func Part1ValWithViz(lines []string, vizFactory func(setup map[string]interface{
 			}
 
 			// Send visualization update for each click
-			if vizFn != nil {
-				vizFn(map[string]interface{}{
+			if vizCallback != nil {
+				vizCallback(map[string]interface{}{
 					"position":         lockValue,
 					"finalPosition":    finalLockValue,
 					"counter":          value,

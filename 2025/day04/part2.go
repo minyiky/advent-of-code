@@ -4,43 +4,45 @@ import (
 	"fmt"
 	"io"
 	"time"
+
+	"github.com/minyiky/advent-of-code/2025/helpers/point"
 )
 
 func Part2Val(lines []string) (int, error) {
 	var value int
 
-	grid := make(map[Point]struct{})
+	grid := make(map[point.Point]struct{})
 
 	for j, line := range lines {
 		for i, char := range line {
 			if char == '@' {
-				grid[Point{i, j}] = struct{}{}
+				grid[point.Point{i, j}] = struct{}{}
 			}
 		}
 	}
 
 	setToCheck := grid
 	for {
-		newSetToCheck := make(map[Point]struct{}, len(grid))
-		safeSet := make(map[Point]struct{}, len(setToCheck))
+		newSetToCheck := make(map[point.Point]struct{}, len(grid))
+		safeSet := make(map[point.Point]struct{}, len(setToCheck))
 	setCheck:
-		for point := range setToCheck {
+		for p := range setToCheck {
 			numBordering := 0
-			for _, d := range AllDirs {
-				if _, ok := grid[point.Add(d)]; ok {
+			for _, d := range point.AllDirs {
+				if _, ok := grid[p.Add(d)]; ok {
 					numBordering++
 					if numBordering == 4 {
 						continue setCheck
 					}
 				}
 			}
-			safeSet[point] = struct{}{}
+			safeSet[p] = struct{}{}
 		}
 
 		// Add neighbors of safe points to check next
-		for point := range safeSet {
-			for _, d := range AllDirs {
-				neighbor := point.Add(d)
+		for p := range safeSet {
+			for _, d := range point.AllDirs {
+				neighbor := p.Add(d)
 				if _, ok := grid[neighbor]; ok {
 					newSetToCheck[neighbor] = struct{}{}
 				}

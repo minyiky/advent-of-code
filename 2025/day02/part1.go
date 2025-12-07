@@ -50,19 +50,11 @@ func Part1Val(lines []string) (int, error) {
 	return value, nil
 }
 
-// Part1ValWithViz runs Part1 with visualization support using factory pattern
-func Part1ValWithViz(lines []string, vizFactory func(setup map[string]interface{}) func(data map[string]interface{}), speed float64) (int, error) {
+// Part1ValWithViz runs Part1 with visualization support
+func Part1ValWithViz(lines []string, vizCallback func(data map[string]interface{}), speed float64) (int, error) {
 	var value int
 
 	rngs := strings.Split(lines[0], ",")
-
-	// Initialize visualization with setup data
-	var vizFn func(data map[string]interface{})
-	if vizFactory != nil {
-		vizFn = vizFactory(map[string]interface{}{
-			"type": "rangePanels",
-		})
-	}
 
 	for rangeIdx, line := range rngs {
 		var lower, upper int
@@ -109,7 +101,7 @@ func Part1ValWithViz(lines []string, vizFactory func(setup map[string]interface{
 		}
 
 		// Send ONE update showing all patterns found in THIS range
-		if vizFn != nil {
+		if vizCallback != nil {
 			// Create a deep copy of panels for safe channel transmission
 			panelsCopy := make(map[string]interface{})
 			for k, v := range panels {
@@ -120,7 +112,7 @@ func Part1ValWithViz(lines []string, vizFactory func(setup map[string]interface{
 				panelsCopy[k] = valuesCopy
 			}
 
-			vizFn(map[string]interface{}{
+			vizCallback(map[string]interface{}{
 				"currentRange": line,
 				"rangeIndex":   rangeIdx,
 				"totalRanges":  len(rngs),
