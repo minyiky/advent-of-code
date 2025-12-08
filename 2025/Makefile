@@ -35,3 +35,18 @@ test:
 
 input:
 	find ./day* -maxdepth 0 -type d -exec touch {}/input.txt \;
+
+# BubbleTea TUI app
+# Find all Go source files in the project
+BUBBLETEA_SOURCES := $(shell find . -name '*.go' -not -path './_template/*' 2>/dev/null)
+
+# Build the binary only if sources or dependencies have changed
+.bin/bubbletea: $(BUBBLETEA_SOURCES) go.mod go.sum
+	@mkdir -p .bin
+	@echo "Building bubbletea..."
+	@go build -o .bin/bubbletea cmd/bubbleapp/main.go
+
+# Run bubbletea (will rebuild if needed)
+.PHONY: bubbletea
+bubbletea: .bin/bubbletea
+	@./.bin/bubbletea
