@@ -1,5 +1,7 @@
 package point
 
+import "math"
+
 var (
 	Up = Point{
 		X: 0,
@@ -47,9 +49,20 @@ type Point struct {
 	Y int
 }
 
-func (p *Point) Add(other Point) Point {
+func (p Point) Add(other Point) Point {
 	return Point{
 		X: p.X + other.X,
 		Y: p.Y + other.Y,
 	}
+}
+
+func (p Point) Sub(other Point) Point {
+	return Point{
+		X: p.X - other.X,
+		Y: p.Y - other.Y,
+	}
+}
+
+func (p Point) Magnitude() int {
+	return int(math.Abs(float64(p.X * p.Y)))
 }
