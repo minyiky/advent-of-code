@@ -6,43 +6,57 @@ import (
 	"math"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 )
 
 func Part2Val(lines []string) (int, error) {
 	var value int
 
+	results := make(chan int, len(lines))
+
+	wg := sync.WaitGroup{}
+
 	for _, line := range lines {
-		parts := strings.Split(line, " ")
+		wg.Add(1)
+		go func(line string) {
+			defer wg.Done()
+			parts := strings.Split(line, " ")
 
-		target := make([]int, 0)
-		jolts := strings.Split(strings.Trim(parts[len(parts)-1], "{}"), ",")
+			target := make([]int, 0)
+			jolts := strings.Split(strings.Trim(parts[len(parts)-1], "{}"), ",")
 
-		for _, jolt := range jolts {
-			num, err := strconv.Atoi(jolt)
-			if err != nil {
-				return 0, err
+			for _, jolt := range jolts {
+				num, err := strconv.Atoi(jolt)
+				if err != nil {
+					return
+				}
+				target = append(target, num)
 			}
-			target = append(target, num)
-		}
 
-		instructions := make([][]int, 0, len(parts)-2)
-		for _, p := range parts[1 : len(parts)-1] {
-			var instruction []int
-			for _, c := range p {
-				if c >= '0' && c <= '9' {
-					instruction = append(instruction, int(c-'0'))
+			instructions := make([][]int, 0, len(parts)-2)
+			for _, p := range parts[1 : len(parts)-1] {
+				var instruction []int
+				for _, c := range p {
+					if c >= '0' && c <= '9' {
+						instruction = append(instruction, int(c-'0'))
+					}
+				}
+				if len(instruction) > 0 {
+					instructions = append(instructions, instruction)
 				}
 			}
-			if len(instruction) > 0 {
-				instructions = append(instructions, instruction)
+
+			if result, ok := solveLinearSystem(instructions, len(target), target); ok {
+				results <- result
 			}
+		}(line)
+	}
 
-		}
+	wg.Wait()
 
-		if result, ok := solveLinearSystem(instructions, len(target), target); ok {
-			value += result
-		}
+	for len(results) > 0 {
+		value += <-results
 	}
 
 	return value, nil
@@ -64,7 +78,7 @@ func solveLinearSystem(instructions [][]int, numBulbs int, target []int) (int, b
 	}
 
 	// Track which columns have pivots and their pivot rows
-	pivotCol := make([]int, numBulbs) // pivotCol[row] = column of pivot, or -1
+	pivotCol := make([]int, numBulbs)
 	for i := range pivotCol {
 		pivotCol[i] = -1
 	}
@@ -84,12 +98,14 @@ func solveLinearSystem(instructions [][]int, numBulbs int, target []int) (int, b
 			continue // No pivot in this column (free variable)
 		}
 
-		// Swap rows
-		matrix[pivotRow], matrix[maxRow] = matrix[maxRow], matrix[pivotRow]
+		// Swap rows (only if needed)
+		if maxRow != pivotRow {
+			matrix[pivotRow], matrix[maxRow] = matrix[maxRow], matrix[pivotRow]
+		}
 
 		// Scale pivot row to make pivot = 1
 		scale := matrix[pivotRow][col]
-		for j := range matrix[pivotRow] {
+		for j := col; j <= numInstr; j++ { // Optimization: start from col
 			matrix[pivotRow][j] /= scale
 		}
 
@@ -97,7 +113,7 @@ func solveLinearSystem(instructions [][]int, numBulbs int, target []int) (int, b
 		for row := 0; row < numBulbs; row++ {
 			if row != pivotRow && math.Abs(matrix[row][col]) > 1e-10 {
 				factor := matrix[row][col]
-				for j := range matrix[row] {
+				for j := col; j <= numInstr; j++ { // Optimization: start from col
 					matrix[row][j] -= factor * matrix[pivotRow][j]
 				}
 			}
@@ -122,22 +138,56 @@ func solveLinearSystem(instructions [][]int, numBulbs int, target []int) (int, b
 		}
 	}
 
-	// Search for minimum sum solution with non-negative integers
-	// Try all combinations of free variables from 0 to max reasonable value
-	maxFreeVal := 0
+	maxTarget := 0
 	for _, t := range target {
-		if t > maxFreeVal {
-			maxFreeVal = t
+		if t > maxTarget {
+			maxTarget = t
 		}
 	}
 
+	maxFreeVal := maxTarget
+
 	bestSum := -1
 
-	var search func(freeIdx int, freeVals []int)
-	search = func(freeIdx int, freeVals []int) {
+	// Try to find an initial solution with all free vars = 0
+	{
+		solution := make([]float64, numInstr)
+		for row := pivotRow - 1; row >= 0; row-- {
+			col := pivotCol[row]
+			if col >= 0 {
+				solution[col] = matrix[row][numInstr]
+			}
+		}
+		valid := true
+		sum := 0
+		for _, v := range solution {
+			rounded := int(math.Round(v))
+			if rounded < 0 || math.Abs(v-float64(rounded)) > 1e-6 {
+				valid = false
+				break
+			}
+			sum += rounded
+		}
+		if valid {
+			bestSum = sum
+		}
+	}
+
+	// Reusable solution slice
+	solution := make([]float64, numInstr)
+
+	var search func(freeIdx int, freeVals []int, partialSum int)
+	search = func(freeIdx int, freeVals []int, partialSum int) {
+		// Prune: if partial sum already exceeds best, skip
+		if bestSum >= 0 && partialSum >= bestSum {
+			return
+		}
+
 		if freeIdx == len(freeVars) {
 			// Compute solution with these free variable values
-			solution := make([]float64, numInstr)
+			for i := 0; i < numInstr; i++ {
+				solution[i] = 0
+			}
 			for i, col := range freeVars {
 				solution[col] = float64(freeVals[i])
 			}
@@ -173,14 +223,20 @@ func solveLinearSystem(instructions [][]int, numBulbs int, target []int) (int, b
 
 		// Try values for this free variable
 		for v := 0; v <= maxFreeVal; v++ {
+			// Prune: if adding this v already exceeds best, skip rest
+			if bestSum >= 0 && partialSum+v >= bestSum {
+				break
+			}
 			freeVals[freeIdx] = v
-			search(freeIdx+1, freeVals)
+			search(freeIdx+1, freeVals, partialSum+v)
 		}
 	}
 
 	if len(freeVars) == 0 {
 		// Unique solution - just extract it
-		solution := make([]float64, numInstr)
+		for i := 0; i < numInstr; i++ {
+			solution[i] = 0
+		}
 		for row := 0; row < pivotRow; row++ {
 			col := pivotCol[row]
 			if col >= 0 {
@@ -199,7 +255,7 @@ func solveLinearSystem(instructions [][]int, numBulbs int, target []int) (int, b
 		return sum, true
 	}
 
-	search(0, make([]int, len(freeVars)))
+	search(0, make([]int, len(freeVars)), 0)
 	if bestSum < 0 {
 		return 0, false
 	}
