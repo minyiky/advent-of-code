@@ -1,0 +1,19 @@
+                            --- Day 11: Reactor ---                             
+                      https://adventofcode.com/2025/day/11                      
+------------------------------- Example data 1/1 -------------------------------
+aaa: you hhh
+you: bbb ccc
+bbb: ddd eee
+ccc: ddd eee fff
+ddd: ggg
+eee: out
+fff: out
+ggg: out
+hhh: ccc fff iii
+iii: out
+--------------------------------------------------------------------------------
+answer_a: out
+answer_b: -
+--------------------------------------------------------------------------------
+
+
